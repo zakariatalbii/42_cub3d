@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/10/27 20:48:47 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/10/29 04:47:19 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ double	ft_rad(double deg)
 
 void	ft_player(t_player *player)
 {
-	player->pos.x = 22.9;
-	player->pos.y = 22.9;
-	player->dir.x = -cos(PI / 4);
-	player->dir.y = sin(PI /4);
-	player->plane.x = tan(ft_rad(30.)) * sin(PI /4);
-	player->plane.y = tan(ft_rad(30.)) * cos(PI / 4);
+	player->pos.x = 14.5;
+	player->pos.y = 23.5;
+	player->dir.x = 0.;
+	player->dir.y = 1.;
+	player->plane.x = tan(ft_rad(30.));
+	player->plane.y = 0.;
 }
 
 double	ft_perpWallDist(t_player *player, t_ray *ray)
@@ -62,7 +62,7 @@ double	ft_perpWallDist(t_player *player, t_ray *ray)
 		sideDist.y = (mapY - player->pos.y + 1.) * deltaDist.y;
 		stepY = 1;
 	}
-	while (1)
+	while (Map[mapY][mapX] == 0)
 	{
 		if (sideDist.x < sideDist.y)
 		{
@@ -76,12 +76,33 @@ double	ft_perpWallDist(t_player *player, t_ray *ray)
 			mapY += stepY;
 			ray->side = 1;
 		}
-		if (Map[mapY][mapX] == 1)
-			break ;
 	}
 	if(ray->side == 0)
 		return (sideDist.x - deltaDist.x);
 	return (sideDist.y - deltaDist.y);
+}
+
+void	ft_setcol(t_data *data)
+{
+	int			x;
+	int			y;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT / 2)
+		{
+			mlx_put_pixel(data->img, x, y, 0x4299F5AF);
+			y++;
+		}
+		while (y < HEIGHT)
+		{
+			mlx_put_pixel(data->img, x, y, 0xF5BC42AF);
+			y++;
+		}
+		x++;
+	}
 }
 
 void	ft_cub(void *param)
@@ -94,6 +115,7 @@ void	ft_cub(void *param)
 	int			col;
 
 	data = (t_data *)param;
+	ft_setcol(data);
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -112,9 +134,9 @@ void	ft_cub(void *param)
 			line.end = HEIGHT - 1;
 
 		if (ray.side == 0)
-			col = 0x34EBDEAF;
+			col = 0x42F563AF;
 		else
-			col = 0xEBA134AF;
+			col = 0xF58142AF;
 		y = line.start;
 		while (y < line.end + 1)
 		{

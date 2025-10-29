@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/10/27 20:55:20 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/10/29 03:58:20 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 # include <math.h>
 # include "MLX42/include/MLX42/MLX42.h"
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 800
+# define HEIGHT 800
 
 # define PI acos(-1.)
 
-extern int Map[24][24];
+extern int Map[25][50];
 
 typedef struct	s_xy
 {
@@ -66,5 +66,6 @@ typedef struct	s_data
 
 void	ft_player(t_player *player);
 void	ft_cub(void *param);
+double	ft_rad(double deg);
 
 #endif
