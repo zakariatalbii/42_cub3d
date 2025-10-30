@@ -6,16 +6,11 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/10/29 04:47:19 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/10/30 00:45:50 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-double	ft_rad(double deg)
-{
-	return (deg * (PI / 180.));
-}
 
 void	ft_player(t_player *player)
 {
@@ -23,57 +18,41 @@ void	ft_player(t_player *player)
 	player->pos.y = 23.5;
 	player->dir.x = 0.;
 	player->dir.y = 1.;
-	player->plane.x = tan(ft_rad(30.));
+	player->plane.x = tan(PI / 6);
 	player->plane.y = 0.;
 }
 
 double	ft_perpWallDist(t_player *player, t_ray *ray)
 {
-	t_xy	deltaDist;
 	t_xy	sideDist;
+	t_xy	deltaDist;
 	int		mapX;
 	int		mapY;
-	int stepX;
-    int stepY;
-
-	deltaDist.x = 1. / fabs(ray->dir.x);
-	deltaDist.y = 1. / fabs(ray->dir.y);
 
 	mapX = (int)player->pos.x;
 	mapY = (int)player->pos.y;
-
+	deltaDist.x = 1. / fabs(ray->dir.x);
+	deltaDist.y = 1. / fabs(ray->dir.y);
 	if (ray->dir.x < 0.)
-	{
 		sideDist.x = (player->pos.x - mapX) * deltaDist.x;
-		stepX = -1;
-	}
 	else
-	{
 		sideDist.x = (mapX - player->pos.x + 1.) * deltaDist.x;
-		stepX = 1;
-	}
-	if (ray->dir.y > 0.)
-	{
-		sideDist.y = (player->pos.y - mapY) * deltaDist.y;
-		stepY = -1;
-	}
-	else
-	{
+	if (ray->dir.y < 0.)
 		sideDist.y = (mapY - player->pos.y + 1.) * deltaDist.y;
-		stepY = 1;
-	}
+	else
+		sideDist.y = (player->pos.y - mapY) * deltaDist.y;
 	while (Map[mapY][mapX] == 0)
 	{
 		if (sideDist.x < sideDist.y)
 		{
 			sideDist.x += deltaDist.x;
-			mapX += stepX;
+			mapX -= 2 * (ray->dir.x < 0.) - 1;
 			ray->side = 0;
 		}
 		else
 		{
 			sideDist.y += deltaDist.y;
-			mapY += stepY;
+			mapY += 2 * (ray->dir.y < 0.) - 1;
 			ray->side = 1;
 		}
 	}
