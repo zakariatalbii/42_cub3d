@@ -1,3 +1,5 @@
+MLX_REPO = https://github.com/codam-coding-college/MLX42.git
+
 MLX = $(HOME)/MLX42
 
 MLX_LIB = $(MLX)/lib/libmlx42.a
@@ -27,12 +29,13 @@ $(MLX_LIB): $(MLX)
 	cmake $(MLX) -B $(MLX)/lib && make -C $(MLX)/lib -j4
 
 $(MLX):
-	git clone https://github.com/codam-coding-college/MLX42.git $(MLX)
+	git clone $(MLX_REPO) $(MLX)
 
 clean:
 	$(RM) $(OBJS)
 
 fclean: clean
+	make -C $(MLX)/lib clean
 	$(RM) $(NAME)
 
 re: fclean all

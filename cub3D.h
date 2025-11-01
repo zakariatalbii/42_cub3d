@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/10/30 00:25:50 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/10/31 04:29:34 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <math.h>
-# include <MLX42.h>
+# include "MLX42/include/MLX42/MLX42.h"
 
 # define WIDTH 800
 # define HEIGHT 800

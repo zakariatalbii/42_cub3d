@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/10/30 00:45:50 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/01 03:10:49 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_player(t_player *player)
 {
-	player->pos.x = 14.5;
-	player->pos.y = 23.5;
-	player->dir.x = 0.;
-	player->dir.y = 1.;
-	player->plane.x = tan(PI / 6);
-	player->plane.y = 0.;
+	player->pos.x = 4.5;
+	player->pos.y = 6.5;
+	player->dir.x = 1.;
+	player->dir.y = 0.;
+	player->plane.x = 0.;
+	player->plane.y = -tan(PI / 6);
 }
 
 double	ft_perpWallDist(t_player *player, t_ray *ray)
@@ -72,7 +72,7 @@ void	ft_setcol(t_data *data)
 		y = 0;
 		while (y < HEIGHT / 2)
 		{
-			mlx_put_pixel(data->img, x, y, 0x4299F5AF);
+			mlx_put_pixel(data->img, x, y, 0x004691CE);
 			y++;
 		}
 		while (y < HEIGHT)
@@ -113,9 +113,9 @@ void	ft_cub(void *param)
 			line.end = HEIGHT - 1;
 
 		if (ray.side == 0)
-			col = 0x42F563AF;
+			col = 0x008D00C2;
 		else
-			col = 0xF58142AF;
+			col = 0xD97300BF;
 		y = line.start;
 		while (y < line.end + 1)
 		{
