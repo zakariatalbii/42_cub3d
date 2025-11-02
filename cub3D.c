@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/01 03:18:30 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/02 22:34:29 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(void)
 
 	ft_player(&data.player);
 
-	data.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
+	data.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
 
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 

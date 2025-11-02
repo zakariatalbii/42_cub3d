@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/01 03:10:49 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/02 22:25:30 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ void	ft_setcol(t_data *data)
 	int			y;
 
 	x = 0;
-	while (x < WIDTH)
+	while (x < data->mlx->width)
 	{
 		y = 0;
-		while (y < HEIGHT / 2)
+		while (y < data->mlx->height / 2)
 		{
 			mlx_put_pixel(data->img, x, y, 0x004691CE);
 			y++;
 		}
-		while (y < HEIGHT)
+		while (y < data->mlx->height)
 		{
 			mlx_put_pixel(data->img, x, y, 0xF5BC42AF);
 			y++;
@@ -94,23 +94,24 @@ void	ft_cub(void *param)
 	int			col;
 
 	data = (t_data *)param;
+	mlx_resize_image(data->img, data->mlx->width, data->mlx->height);
 	ft_setcol(data);
 	x = 0;
-	while (x < WIDTH)
+	while (x < data->mlx->width)
 	{
-		ray.cameraX = 2. * x / WIDTH - 1.;
+		ray.cameraX = 2. * x / data->mlx->width - 1.;
 		ray.dir.x = data->player.dir.x + data->player.plane.x * ray.cameraX;
 		ray.dir.y = data->player.dir.y + data->player.plane.y * ray.cameraX;
 		ray.perpWallDist = ft_perpWallDist(&data->player, &ray);
 		
-		line.height = (int)(HEIGHT / ray.perpWallDist);
+		line.height = (int)(data->mlx->height / ray.perpWallDist);
 
-		line.start = -line.height / 2 + HEIGHT / 2;
+		line.start = -line.height / 2 + data->mlx->height / 2;
 		if(line.start < 0)
 			line.start = 0;
-		line.end = line.height / 2 + HEIGHT / 2;
-		if(line.end >= HEIGHT)
-			line.end = HEIGHT - 1;
+		line.end = line.height / 2 + data->mlx->height / 2;
+		if(line.end >= data->mlx->height)
+			line.end = data->mlx->height - 1;
 
 		if (ray.side == 0)
 			col = 0x008D00C2;
