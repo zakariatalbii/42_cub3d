@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/02 22:25:30 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/02 23:39:32 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_cub(void *param)
 	x = 0;
 	while (x < data->mlx->width)
 	{
-		ray.cameraX = 2. * x / data->mlx->width - 1.;
+		ray.cameraX = (2. * x - data->mlx->width) / data->mlx->height;
 		ray.dir.x = data->player.dir.x + data->player.plane.x * ray.cameraX;
 		ray.dir.y = data->player.dir.y + data->player.plane.y * ray.cameraX;
 		ray.perpWallDist = ft_perpWallDist(&data->player, &ray);

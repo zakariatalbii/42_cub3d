@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/02 22:34:52 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/02 23:49:51 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <math.h>
 # include "MLX42.h"
 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 1280
+# define HEIGHT 720
 
 # define PI acos(-1.)
 
