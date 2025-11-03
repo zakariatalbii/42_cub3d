@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/02 22:34:29 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/03 06:12:28 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	main(void)
 	data.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
 
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+
+	data.tex = mlx_load_png("./textures/wall.png");
 
 	mlx_loop_hook(data.mlx, ft_cub, &data);
 

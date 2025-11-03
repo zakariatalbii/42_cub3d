@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/02 23:39:32 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/03 06:25:40 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ void	ft_cub(void *param)
 	int			x;
 	int			y;
 	int			col;
-
+	double		wallX;
+	int			texX;
+	int			texY;
+	 
 	data = (t_data *)param;
 	mlx_resize_image(data->img, data->mlx->width, data->mlx->height);
 	ft_setcol(data);
@@ -113,13 +116,27 @@ void	ft_cub(void *param)
 		if(line.end >= data->mlx->height)
 			line.end = data->mlx->height - 1;
 
+
 		if (ray.side == 0)
-			col = 0x008D00C2;
+			wallX = data->player.pos.y - ray.dir.y * ray.perpWallDist;
 		else
-			col = 0xD97300BF;
+			wallX = data->player.pos.x + ray.dir.x * ray.perpWallDist;
+		wallX -= (int)wallX;
+
+		
+		texX = (int)(wallX * data->tex->width);
+    	if ((ray.side == 0 && ray.dir.x > 0) || (ray.side == 1 && ray.dir.y < 0))
+			texX = data->tex->width - texX - 1;
+
+
 		y = line.start;
 		while (y < line.end + 1)
 		{
+			texY = (int)((y + line.height / 2. - data->mlx->height / 2.) * data->tex->height / line.height);
+			col = (int)(data->tex->pixels[(texX + texY * data->tex->width) * data->tex->bytes_per_pixel] << 24)
+				+ (int)(data->tex->pixels[(texX + texY * data->tex->width) * data->tex->bytes_per_pixel + 1] << 16)
+				+ (int)(data->tex->pixels[(texX + texY * data->tex->width) * data->tex->bytes_per_pixel + 2] << 8)
+				+ (int)data->tex->pixels[(texX + texY * data->tex->width) * data->tex->bytes_per_pixel + 3];
 			mlx_put_pixel(data->img, x, y, col);
 			y++;
 		}
