@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/04 03:17:47 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/04 12:29:51 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,4 @@ void	ft_cub(void *param)
 		}
 		x++;
 	}
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
