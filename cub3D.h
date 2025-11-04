@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/03 03:51:16 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/04 02:09:35 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
+
+# define NO 0
+# define SO 1
+# define WE 2
+# define EA 3
 
 # define PI acos(-1.)
 
@@ -61,7 +66,7 @@ typedef struct	s_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_texture_t	*tex;
+	mlx_texture_t	*tex[4];
 	t_player		player;
 }	t_data;
 

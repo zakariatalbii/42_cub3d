@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/03 06:12:28 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/04 03:22:52 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,21 @@ void	ft_hook(void *param)
 	data = param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
   {
-    if (Map[(int)data->player.pos.y][(int)(data->player.pos.x + .11 * data->player.dir.x)] == 0)
+    if (Map[(int)data->player.pos.y][(int)(data->player.pos.x + .5 * data->player.dir.x)] == 0)
       data->player.pos.x += .1 * data->player.dir.x;
-    if (Map[(int)(data->player.pos.y - .11 * data->player.dir.y)][(int)data->player.pos.x] == 0)
+    if (Map[(int)(data->player.pos.y - .5 * data->player.dir.y)][(int)data->player.pos.x] == 0)
       data->player.pos.y -= .1 * data->player.dir.y;
   }
   if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-    if (Map[(int)data->player.pos.y][(int)(data->player.pos.x - .11 * data->player.dir.x)] == 0)
+    if (Map[(int)data->player.pos.y][(int)(data->player.pos.x - .5 * data->player.dir.x)] == 0)
       data->player.pos.x -= .1 * data->player.dir.x;
-    if (Map[(int)(data->player.pos.y + .11 * data->player.dir.y)][(int)data->player.pos.x] == 0)
+    if (Map[(int)(data->player.pos.y + .5 * data->player.dir.y)][(int)data->player.pos.x] == 0)
       data->player.pos.y += .1 * data->player.dir.y;
   }
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
   {
-    if (Map[(int)(data->player.pos.y + .11 * data->player.dir.x)][(int)(data->player.pos.x + .11 * data->player.dir.y)] == 0)
+    if (Map[(int)(data->player.pos.y + .5 * data->player.dir.x)][(int)(data->player.pos.x + .5 * data->player.dir.y)] == 0)
     {
       data->player.pos.x += .1 * data->player.dir.y;
       data->player.pos.y += .1 * data->player.dir.x;
@@ -70,7 +70,7 @@ void	ft_hook(void *param)
   }
   if (mlx_is_key_down(data->mlx, MLX_KEY_A))
   {
-    if (Map[(int)(data->player.pos.y - .11 * data->player.dir.x)][(int)(data->player.pos.x - .11 * data->player.dir.y)] == 0)
+    if (Map[(int)(data->player.pos.y - .5 * data->player.dir.x)][(int)(data->player.pos.x - .5 * data->player.dir.y)] == 0)
     {
       data->player.pos.x -= .1 * data->player.dir.y;
       data->player.pos.y -= .1 * data->player.dir.x;
@@ -106,7 +106,10 @@ int	main(void)
 
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 
-	data.tex = mlx_load_png("./textures/wall.png");
+	data.tex[NO] = mlx_load_png("./textures/wall.png");
+	data.tex[SO] = mlx_load_png("./textures/wall.png");
+	data.tex[WE] = mlx_load_png("./textures/wall1.png");
+	data.tex[EA] = mlx_load_png("./textures/wall1.png");
 
 	mlx_loop_hook(data.mlx, ft_cub, &data);
 

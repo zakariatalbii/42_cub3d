@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/03 06:25:40 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/04 03:17:47 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,29 +61,6 @@ double	ft_perpWallDist(t_player *player, t_ray *ray)
 	return (sideDist.y - deltaDist.y);
 }
 
-void	ft_setcol(t_data *data)
-{
-	int			x;
-	int			y;
-
-	x = 0;
-	while (x < data->mlx->width)
-	{
-		y = 0;
-		while (y < data->mlx->height / 2)
-		{
-			mlx_put_pixel(data->img, x, y, 0x004691CE);
-			y++;
-		}
-		while (y < data->mlx->height)
-		{
-			mlx_put_pixel(data->img, x, y, 0xF5BC42AF);
-			y++;
-		}
-		x++;
-	}
-}
-
 void	ft_cub(void *param)
 {
 	t_data		*data;
@@ -95,10 +72,10 @@ void	ft_cub(void *param)
 	double		wallX;
 	int			texX;
 	int			texY;
+	int			texID;
 	 
 	data = (t_data *)param;
 	mlx_resize_image(data->img, data->mlx->width, data->mlx->height);
-	ft_setcol(data);
 	x = 0;
 	while (x < data->mlx->width)
 	{
@@ -123,21 +100,44 @@ void	ft_cub(void *param)
 			wallX = data->player.pos.x + ray.dir.x * ray.perpWallDist;
 		wallX -= (int)wallX;
 
+		if (ray.side == 1)
+		{
+			if (ray.dir.y < 0)
+				texID = SO;
+			else
+				texID = NO;
+		}
+		else
+		{
+			if (ray.dir.x < 0)
+				texID = WE;
+			else
+				texID = EA;
+		}
 		
-		texX = (int)(wallX * data->tex->width);
-    	if ((ray.side == 0 && ray.dir.x > 0) || (ray.side == 1 && ray.dir.y < 0))
-			texX = data->tex->width - texX - 1;
+		texX = (int)(wallX * data->tex[texID]->width);
+    	if ((ray.side == 0 && ray.dir.x < 0) || (ray.side == 1 && ray.dir.y < 0))
+			texX = data->tex[texID]->width - texX - 1;
 
-
-		y = line.start;
+		y = 0;
+		while (y < line.start)
+		{
+			mlx_put_pixel(data->img, x, y, 0x87CEEBCE);
+			y++;
+		}
 		while (y < line.end + 1)
 		{
-			texY = (int)((y + line.height / 2. - data->mlx->height / 2.) * data->tex->height / line.height);
-			col = (int)(data->tex->pixels[(texX + texY * data->tex->width) * data->tex->bytes_per_pixel] << 24)
-				+ (int)(data->tex->pixels[(texX + texY * data->tex->width) * data->tex->bytes_per_pixel + 1] << 16)
-				+ (int)(data->tex->pixels[(texX + texY * data->tex->width) * data->tex->bytes_per_pixel + 2] << 8)
-				+ (int)data->tex->pixels[(texX + texY * data->tex->width) * data->tex->bytes_per_pixel + 3];
+			texY = (int)((double)(y + line.height / 2 - data->mlx->height / 2) * (data->tex[texID]->height - 1) / line.height);
+			col = (int)(data->tex[texID]->pixels[(texX + texY * data->tex[texID]->width) * data->tex[texID]->bytes_per_pixel] << 24)
+				+ (int)(data->tex[texID]->pixels[(texX + texY * data->tex[texID]->width) * data->tex[texID]->bytes_per_pixel + 1] << 16)
+				+ (int)(data->tex[texID]->pixels[(texX + texY * data->tex[texID]->width) * data->tex[texID]->bytes_per_pixel + 2] << 8)
+				+ (int)data->tex[texID]->pixels[(texX + texY * data->tex[texID]->width) * data->tex[texID]->bytes_per_pixel + 3];
 			mlx_put_pixel(data->img, x, y, col);
+			y++;
+		}
+		while (y < data->mlx->height)
+		{
+			mlx_put_pixel(data->img, x, y, 0x444444FF);
 			y++;
 		}
 		x++;
