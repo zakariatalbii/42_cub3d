@@ -6,7 +6,7 @@ MLX_LIB = $(MLX)/lib/libmlx42.a
 
 MLX_H_DIR = $(MLX)/include/MLX42
 
-SRCS = cub3D.c ft_cub.c
+SRCS = cub3D.c ft_cub.c ft_miniMap.c
 
 OBJS= $(SRCS:.c=.o)
 

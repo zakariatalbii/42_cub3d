@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/04 02:09:35 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/08 03:09:51 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ typedef struct	s_draw_line
 typedef struct	s_data
 {
 	mlx_t			*mlx;
-	mlx_image_t		*img;
+	mlx_image_t		*imgCub;
+	mlx_image_t		*imgMM;
 	mlx_texture_t	*tex[4];
 	t_player		player;
 }	t_data;
 
 void	ft_player(t_player *player);
 void	ft_cub(void *param);
+void	ft_miniMap(void *param);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/06 02:10:05 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/08 03:10:39 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,14 @@ int	main(void)
 
 	data.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
 
-	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+	data.imgCub = mlx_new_image(data.mlx, WIDTH, HEIGHT);
   
-	mlx_image_to_window(data.mlx, data.img, 0, 0);
+	data.imgMM = mlx_new_image(data.mlx, WIDTH / 4, HEIGHT / 4);
+  
+  mlx_image_to_window(data.mlx, data.imgCub, 0, 0);
+            
+	mlx_image_to_window(data.mlx, data.imgMM, data.mlx->width - data.mlx->width / 4,
+                      data.mlx->height - data.mlx->height / 4);
 
 	data.tex[NO] = mlx_load_png("./textures/wall.png");
 	data.tex[SO] = mlx_load_png("./textures/wall.png");
@@ -122,6 +127,8 @@ int	main(void)
 	data.tex[EA] = mlx_load_png("./textures/wall1.png");
 
 	mlx_loop_hook(data.mlx, ft_cub, &data);
+  
+	mlx_loop_hook(data.mlx, ft_miniMap, &data);
 
   mlx_loop_hook(data.mlx, ft_hook, &data);
   

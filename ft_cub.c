@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/04 12:29:51 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/08 03:09:24 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_cub(void *param)
 	int			texID;
 	 
 	data = (t_data *)param;
-	mlx_resize_image(data->img, data->mlx->width, data->mlx->height);
+	mlx_resize_image(data->imgCub, data->mlx->width, data->mlx->height);
 	x = 0;
 	while (x < data->mlx->width)
 	{
@@ -122,7 +122,7 @@ void	ft_cub(void *param)
 		y = 0;
 		while (y < line.start)
 		{
-			mlx_put_pixel(data->img, x, y, 0x87CEEBCE);
+			mlx_put_pixel(data->imgCub, x, y, 0x87CEEBCE);
 			y++;
 		}
 		while (y < line.end + 1)
@@ -132,12 +132,12 @@ void	ft_cub(void *param)
 				+ (int)(data->tex[texID]->pixels[(texX + texY * data->tex[texID]->width) * data->tex[texID]->bytes_per_pixel + 1] << 16)
 				+ (int)(data->tex[texID]->pixels[(texX + texY * data->tex[texID]->width) * data->tex[texID]->bytes_per_pixel + 2] << 8)
 				+ (int)data->tex[texID]->pixels[(texX + texY * data->tex[texID]->width) * data->tex[texID]->bytes_per_pixel + 3];
-			mlx_put_pixel(data->img, x, y, col);
+			mlx_put_pixel(data->imgCub, x, y, col);
 			y++;
 		}
 		while (y < data->mlx->height)
 		{
-			mlx_put_pixel(data->img, x, y, 0x444444FF);
+			mlx_put_pixel(data->imgCub, x, y, 0x444444FF);
 			y++;
 		}
 		x++;
