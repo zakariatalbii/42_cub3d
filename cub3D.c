@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/08 03:10:39 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/09 02:41:23 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,36 @@ void	ft_hook(void *param)
   }
 }
 
+void  ft_cursor(double xpos, double ypos, void* param)
+{
+  static  double  x;
+  t_data	*data;
+  double  tmp;
+
+  (void)ypos;
+	data = param;
+  if (xpos < x)
+  {
+    tmp = data->player.dir.x;
+    data->player.dir.x = data->player.dir.x * cos(PI / 36.) - data->player.dir.y * sin(PI / 36.);
+    data->player.dir.y = data->player.dir.y * cos(PI / 36.) + tmp * sin(PI / 36.);
+    tmp = data->player.plane.x;
+    data->player.plane.x = data->player.plane.x * cos(PI / 36.) - data->player.plane.y * sin(PI / 36.);
+    data->player.plane.y = data->player.plane.y * cos(PI / 36.) + tmp * sin(PI / 36.);
+  }
+  if (xpos > x)
+  {
+    tmp = data->player.dir.x;
+    data->player.dir.x = data->player.dir.x * cos(-PI / 36.) - data->player.dir.y * sin(-PI / 36.);
+    data->player.dir.y = data->player.dir.y * cos(-PI / 36.) + tmp * sin(-PI / 36.);
+    tmp = data->player.plane.x;
+    data->player.plane.x = data->player.plane.x * cos(-PI / 36.) - data->player.plane.y * sin(-PI / 36.);
+    data->player.plane.y = data->player.plane.y * cos(-PI / 36.) + tmp * sin(-PI / 36.);
+  }
+  
+  x = xpos;
+}
+
 int	main(void)
 {
 	t_data	data;
@@ -129,6 +159,9 @@ int	main(void)
 	mlx_loop_hook(data.mlx, ft_cub, &data);
   
 	mlx_loop_hook(data.mlx, ft_miniMap, &data);
+  
+  mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
+  mlx_cursor_hook(data.mlx, ft_cursor, &data);
 
   mlx_loop_hook(data.mlx, ft_hook, &data);
   
