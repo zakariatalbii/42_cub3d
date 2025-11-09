@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/08 03:09:51 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/09 12:24:13 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct	s_data
 	mlx_image_t		*imgMM;
 	mlx_texture_t	*tex[4];
 	t_player		player;
+	int				mouse;
 }	t_data;
 
 void	ft_player(t_player *player);

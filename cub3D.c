@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/09 02:41:23 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/09 12:38:47 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_hook(void *param)
 	t_data	*data;
   double  tmp;
 
-	data = param;
+	data = (t_data *)param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
   {
     if (!ft_iswall(data->player.pos.x + .1 * data->player.dir.x, data->player.pos.y))
@@ -111,7 +111,9 @@ void  ft_cursor(double xpos, double ypos, void* param)
   double  tmp;
 
   (void)ypos;
-	data = param;
+	data = (t_data *)param;
+  if (data->mouse == 0)
+    return ;
   if (xpos < x)
   {
     tmp = data->player.dir.x;
@@ -132,6 +134,27 @@ void  ft_cursor(double xpos, double ypos, void* param)
   }
   
   x = xpos;
+}
+
+void  ft_mouse(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
+{
+  t_data	*data;
+
+  (void)mods;
+	data = (t_data *)param;
+  if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
+  {
+    if (data->mouse == 1)
+    {
+      mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
+      data->mouse = 0;
+    }
+    else
+    {
+      mlx_set_cursor_mode(data->mlx, MLX_MOUSE_DISABLED);
+      data->mouse = 1;
+    }
+  }
 }
 
 int	main(void)
@@ -160,8 +183,10 @@ int	main(void)
   
 	mlx_loop_hook(data.mlx, ft_miniMap, &data);
   
-  mlx_set_cursor_mode(data.mlx, MLX_MOUSE_HIDDEN);
+  data.mouse = 1;
+  mlx_set_cursor_mode(data.mlx, MLX_MOUSE_DISABLED);
   mlx_cursor_hook(data.mlx, ft_cursor, &data);
+  mlx_mouse_hook(data.mlx, ft_mouse, &data);
 
   mlx_loop_hook(data.mlx, ft_hook, &data);
   
