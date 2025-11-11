@@ -14,9 +14,18 @@
 
 int negative_map_position(t_config *data)
 {
-	if (!data->tex.no || !data->tex.so || !data->tex.we
-		|| !data->tex.ea || data->floor.b < 0 || data->ceil.b < 0)
-		return(1);
+	if (!data->tex.no)
+		return (printf("Negative map position or missing texture (NO):"), 1);
+	if (!data->tex.so)
+		return (printf("Negative map position or missing texture (SO):"), 1);
+	if (!data->tex.we)
+		return (printf("Negative map position or missing texture (WE):"), 1);
+	if (!data->tex.ea)
+		return (printf("Negative map position or missing texture (EA):"), 1);
+	if (data->floor.b < 0)
+		return (printf("Negative map position or missing floor color:"), 1);
+	if (data->ceil.b < 0)
+		return (printf("Negative map position or missing ceil color:"), 1);
 	return (0);
 }
 

@@ -50,7 +50,7 @@ int	ft_isdigit(int v)
 		return (1);
 	return (0);
 }
-static int	check(int sg)
+int	check_sig(int sg)
 {
 	if (sg > 0)
 		return (-1);
@@ -79,7 +79,7 @@ int	ft_atoi(const char *str)
 	{
 		if (res > ((unsigned long long)((9223372036854775807
 					- (*str - 48)) / 10)))
-			return (check(seg));
+			return (check_sig(seg));
 		res = (res * 10) + *str - 48;
 		str++;
 	}

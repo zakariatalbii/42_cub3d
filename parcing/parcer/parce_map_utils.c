@@ -27,29 +27,6 @@ int only_spaces(char *s)
 	return (1);
 }
 
-int check(int fd)
-{
-    char *line;
-    int result;
-
-	result = 0;
-    while ((line = get_next_line(fd)))
-    {
-        int i = 0;
-        while (line[i])
-        {
-            if (line[i] != ' ' && line[i] != '\n')
-            {
-                result = 1;
-                free_ptr(line);
-                return result;
-            }
-            i++;
-        }
-        free_ptr(line);
-    }
-    return (result);
-}
 int get_cont_line(char *file)
 {
 	int  fd;

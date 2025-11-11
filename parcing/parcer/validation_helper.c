@@ -12,6 +12,30 @@
 
 #include "../cub.h"
 
+int check(int fd)
+{
+    char *line;
+    int result;
+
+	result = 0;
+    while ((line = get_next_line(fd)))
+    {
+        int i = 0;
+        while (line[i])
+        {
+            if (line[i] != ' ' && line[i] != '\n')
+            {
+                result = 1;
+                free_ptr(line);
+                return result;
+            }
+            i++;
+        }
+        free_ptr(line);
+    }
+    return (result);
+}
+
 void assing_position(int y, int x, t_config *data)
 {
 	data->player_x = x;

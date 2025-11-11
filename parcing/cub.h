@@ -105,6 +105,7 @@ int get_h(char**map);
 int	fill_inside(char **map, t_point p, int height, int width);
 int check_inside(char **map, t_config *data);
 void assing_position(int y, int x, t_config *data);
+int check(int fd);
 
 
 //grtnext_line

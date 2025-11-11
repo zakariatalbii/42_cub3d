@@ -88,36 +88,13 @@ int check_the_right(int width, int height, char **map)
     return (0);
 }
 
-void print(char **map)
-{
-	int i = 0;
-	int j = 0;
-	if (map == NULL)
-	{
-		printf("epmtymap\n");
-		exit(1);		
-	}
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (j == 0)
-				printf("[");
-			printf("%c", map[i][j]);
-            
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	
-}
 int validation(t_config *data)
 {
 	char **s_map;
-	
-	if (validation_char_map(data->map))
+
+    if (!data->map)
+        return(printf("no map in file: "),1);
+	else if (validation_char_map(data->map))
 		return (1);
 	s_map = prepar_map(data->map);
 	if (!s_map)
@@ -132,6 +109,6 @@ int validation(t_config *data)
 		return (printf("map leak from the bottom:"),1);
 	if (check_inside(s_map, data))
 		return (printf("map leak from inside:"), 1);
-    print(data->map);
+    //print(data->map);
 	return (0);
 }

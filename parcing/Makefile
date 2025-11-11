@@ -13,7 +13,7 @@ SRC =   main.c \
 		parcer/parce_coler.c\
 		parcer/validation_helper.c
 CC = cc 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address 
 OBJ = $(SRC:.c=.o)
 HEADER = cub.h
 
