@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:21 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/06 16:03:22 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/15 13:55:34 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ int	ft_isdigit(int v)
 		return (1);
 	return (0);
 }
-int	check_sig(int sg)
+
+static int	check_sig(int sg)
 {
 	if (sg > 0)
 		return (-1);
 	return (0);
 }
-
 
 int	ft_atoi(const char *str)
 {

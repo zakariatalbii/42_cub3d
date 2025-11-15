@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:45:31 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/10 18:46:55 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/15 13:38:54 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,29 @@ int only_spaces(char *s)
 	return (1);
 }
 
+int check(int fd)
+{
+    char *line;
+    int result;
+
+	result = 0;
+    while ((line = get_next_line(fd)))
+    {
+        int i = 0;
+        while (line[i])
+        {
+            if (line[i] != ' ' && line[i] != '\n')
+            {
+                result = 1;
+                free_ptr(line);
+                return result;
+            }
+            i++;
+        }
+        free_ptr(line);
+    }
+    return (result);
+}
 int get_cont_line(char *file)
 {
 	int  fd;
@@ -47,18 +70,13 @@ int get_cont_line(char *file)
 		else if (in_map && !only_spaces(line))
 		{
 			if (check(fd))
-				return (close(fd), free_ptr(line), printf("invalid pam: "), -1);
+				return (close(fd), free_ptr(line), -1);
 			return (cont > 0 ? cont : -1);
 		}
 		free_ptr(line);
 	}
 	close(fd);
 	return (cont > 0 ? cont : -1);
-}
-
-int is_player(char c)
-{
-	return (c == 'W' || c == 'E' || c == 'S' || c == 'N');	
 }
 
 int	fill(char **map, t_point p, int height, int width)

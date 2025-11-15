@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:02:13 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/09 12:10:54 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/15 13:45:03 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ typedef struct s_config
     char **map;
     int player_x;
     int player_y;
-    //int rows;
-    //int cols;
-    //char player_dir;
+    char player_dir;
+    int y_rows;
+    int x_cols;
 } t_config;
 
 //malloc_free;
@@ -77,14 +77,14 @@ char	*ft_strdup(char *s1);
 int main_parce(char **cub_file, t_config *data);
 void	data_init(t_config *conf);
 int parce_line(char **file, int fd,t_config *data);
-int assign_config(char *start,char *line, int i, t_config *data);
-// int assign_map(char *line, t_config *data);
+int assign_color(char *start,char *line, int i, t_config *data);
 int is_map(char *line);
+int assign_tex(char *start,char *line, int i, t_config *data);
 int negative_map_position(t_config *data);
 int only_spaces(char *s);
 int get_cont_line(char *file);
 char *get_start(char *line, int i);
-char *get_value(char *line, int i);
+char *get_color(char *line, int i);
 
 //utils
 int	ft_isdigit(int v);
@@ -98,14 +98,13 @@ int is_space(char c);
 int validation(t_config *data);
 int is_player(char c);
 int	flood_fill(char **map, t_point p, int height, int width);
-int validation_char_map(char **map);
-char **prepar_map(char **map);
-int get_long(char **map);
+int validation_char_map(t_config * data);
+char **prepar_map(t_config *data);
+int get_long(t_config *data);
 int get_h(char**map);
 int	fill_inside(char **map, t_point p, int height, int width);
 int check_inside(char **map, t_config *data);
 void assing_position(int y, int x, t_config *data);
-int check(int fd);
 
 
 //grtnext_line
@@ -116,9 +115,5 @@ size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *left_str, char *buff);
 char	*ft_get_line(char *left_str);
 char	*ft_new_left_str(char *left_str);
-
-
-
-
 
 #endif

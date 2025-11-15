@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:22:08 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/11 15:02:22 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:46:52 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,9 @@
 
 int negative_map_position(t_config *data)
 {
-	if (!data->tex.no)
-		return (printf("Negative map position or missing texture (NO):"), 1);
-	if (!data->tex.so)
-		return (printf("Negative map position or missing texture (SO):"), 1);
-	if (!data->tex.we)
-		return (printf("Negative map position or missing texture (WE):"), 1);
-	if (!data->tex.ea)
-		return (printf("Negative map position or missing texture (EA):"), 1);
-	if (data->floor.b < 0)
-		return (printf("Negative map position or missing floor color:"), 1);
-	if (data->ceil.b < 0)
-		return (printf("Negative map position or missing ceil color:"), 1);
+	if (!data->tex.no || !data->tex.so || !data->tex.we
+		|| !data->tex.ea || data->floor.b < 0 || data->ceil.b < 0)
+		return(1);
 	return (0);
 }
 
@@ -47,15 +38,12 @@ char *get_start(char *line, int i)
 		return (NULL);
 }
 
-char *get_value(char *line, int i)
+char *get_color(char *line, int i)
 {
 	int begin;
 	int end;
 
-	if (!ft_strncmp(&line[i], "F ", 2) || !ft_strncmp(&line[i], "C ", 2))
-		i += 2;
-	else
-		i += 3;
+	i += 2;
 	while (is_space(line[i]))
 		i++;
 	begin = i;
@@ -82,14 +70,12 @@ static int  valid_file_name(char *path)
 	if (-1 == fd)
 	{
 		close(fd);
-		perror("Error opening file");
 		return (-1);
 	}
 	len = ft_strlen(path);
 	if (len <= 4 || ft_strcmp(&path[len - 4], ".cub"))
 	{
 		close(fd);
-		printf("Error Usage: </path/file_name.cub>\n");
 		return (-1);
 	}
 	return (fd);

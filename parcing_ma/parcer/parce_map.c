@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 08:19:57 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/11 14:44:44 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:38:16 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int is_map(char *line)
         return (0);
     while (line[i])
     {
-        if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S' &&
-            line[i] != 'E' && line[i] != 'W' && !is_space(line[i]))
+        if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S' 
+			&& line[i] != 'E' && line[i] != 'W' && !is_space(line[i]))
             return (0);
         i++;
     }
     return (1);
 }
 
-int get_long(char **map)
+int get_long(t_config *data)
 {
 	int len;
 	int max;
@@ -39,36 +39,37 @@ int get_long(char **map)
 
 	i = 0;
 	max = 0;
-	while (map[i])
+	while (data->map[i])
 	{
-		len = ft_strlen(map[i]);
+		len = ft_strlen(data->map[i]);
 		if (len > max)
 			max = len;
 		i++;
 	}
+	data->x_cols = max;
 	return (max);
 }
-char **prepar_map(char **map)
+char **prepar_map(t_config *data)
 {
 	int longer_len;
 	char **squar_map;
 	int i;
 
-	longer_len = get_long(map);
+	longer_len = get_long(data);
 	i = 0;
-	while (map[i])
+	while (data->map[i])
 		i++;
 	squar_map = gc_malloc(sizeof (char *) * (i + 1));
 	if (!squar_map)
 		return (NULL);
 	i = 0;
-	while (map[i])
+	while (data->map[i])
 	{
 		squar_map[i] = gc_malloc(sizeof(char) * (longer_len + 1));
 		if (!squar_map[i])
 			return (NULL);
 		memset(squar_map[i], ' ', longer_len);
-        memcpy(squar_map[i], map[i], ft_strlen(map[i]));
+        memcpy(squar_map[i], data->map[i], ft_strlen(data->map[i]));
         squar_map[i][longer_len] = '\0';
         i++;
 	}
@@ -85,31 +86,31 @@ int get_h(char**map)
 	return (i);
 }
 
-int validation_char_map(char **map)
+int validation_char_map(t_config * data)
 {
 	int i;
 	int j;
-	int fond_player;
 	
 	i = 0;
 	j = 0;
-	fond_player = 0;
-	while (map[i])
+	while (data->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (data->map[i][j])
 		{
-			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' '
-					&& !is_player(map[i][j]))
-					return (printf("map char no valid: "), 1);
-			if (is_player(map[i][j]) && !fond_player)
-				fond_player = 1;
-			else if(is_player(map[i][j]) && fond_player)
-					return (printf("More than one player: "), 1);
+			if (data->map[i][j] != '0' && data->map[i][j] != '1' 
+				&& data->map[i][j] != ' ' && !is_player(data->map[i][j]))
+					return (1);
+			if (is_player(data->map[i][j]) && data->player_dir == '1')
+				data->player_dir = data->map[i][j];
+			else if(is_player(data->map[i][j]) && data->player_dir != '1')
+					return (1);
 			j++;	
 		}
 		i++;
 	}
-	return (!fond_player ? 1 : 0);
+	if (data->player_dir == '1')
+		return (1);
+	return (0);
 }
 

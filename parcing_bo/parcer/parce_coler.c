@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:06:37 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/06 16:10:39 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:47:08 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,24 +93,16 @@ int parce_color(char *start, char *value, t_config *data)
 	}
 	return (append_color(value, start[0], data));
 }
-int assign_config(char *start,char *line, int i, t_config *data)
+int assign_color(char *start,char *line, int i, t_config *data)
 {
 	char *value;
 	
 	if (!start)
 		return (1);
-	value = get_value(line , i);
+	value = get_color(line , i);
 	if (!value)
 		return (1);
-	if (!ft_strcmp(start, "NO "))
-		data->tex.no = value;
-	else if (!ft_strcmp(start, "SO "))
-		data->tex.so = value;
-	else if (!ft_strcmp(start, "WE "))
-		data->tex.we = value;
-	else if (!ft_strcmp(start, "EA "))
-		data->tex.ea = value;
-	else if (!ft_strcmp(start, "F ") || !ft_strcmp(start, "C "))
-		return (parce_color(start, value, data));
+	if (parce_color(start, value, data))
+		return (1);
 	return (0);
 }

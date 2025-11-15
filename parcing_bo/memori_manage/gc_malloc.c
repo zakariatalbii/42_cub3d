@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:33:25 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/06 15:23:22 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:24:57 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 void	data_init(t_config *conf)
 {
+	conf->player_dir = '1';
 	conf->tex.no = NULL;
 	conf->tex.so = NULL;
 	conf->tex.we = NULL;
 	conf->tex.ea = NULL;
+	conf->map = NULL;
 	conf->floor.r = -1;
 	conf->floor.g = -1;
 	conf->floor.b = -1;
 	conf->ceil.r = -1;
 	conf->ceil.g = -1;
 	conf->ceil.b = -1;
-	conf->map = NULL;
 }
 
 static t_gc	**get_gc_list(void)

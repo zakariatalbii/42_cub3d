@@ -6,35 +6,11 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 11:56:15 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/10 17:01:01 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:41:46 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
-
-int check(int fd)
-{
-    char *line;
-    int result;
-
-	result = 0;
-    while ((line = get_next_line(fd)))
-    {
-        int i = 0;
-        while (line[i])
-        {
-            if (line[i] != ' ' && line[i] != '\n')
-            {
-                result = 1;
-                free_ptr(line);
-                return result;
-            }
-            i++;
-        }
-        free_ptr(line);
-    }
-    return (result);
-}
 
 void assing_position(int y, int x, t_config *data)
 {
@@ -79,7 +55,7 @@ int check_inside(char **map, t_config *data)
 					assing_position(i, j, data);
 				p.x = j;
 				p.y = i;
-				if (fill_inside(map, p, get_h(map), get_long(map)))
+				if (fill_inside(map, p, get_h(map), get_long(data)))
 					return (1);
 			}
 			j++;
