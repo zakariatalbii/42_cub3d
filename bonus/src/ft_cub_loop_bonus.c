@@ -6,12 +6,11 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 15:39:49 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/15 18:27:39 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-#include "../../MLX42/include/MLX42/MLX42.h"
 
 static void	ft_mouse_hook(t_data *data)
 {

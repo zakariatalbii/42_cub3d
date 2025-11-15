@@ -6,15 +6,15 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 11:42:19 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/15 17:31:39 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	ft_dda(t_ray *ray, t_dist *dist, t_i_xy *map)
+static void	ft_dda(t_data *data, t_ray *ray, t_dist *dist, t_i_xy *map)
 {
-	while (g_map[map->y][map->x] == 0)
+	while (data->map[map->y][map->x] == 0)
 	{
 		if (dist->side.x < dist->side.y)
 		{
@@ -48,7 +48,7 @@ static double	ft_perp_wall_dist(t_data *data, t_ray *ray)
 		dist.side.y = (map.y - data->player.pos.y + 1.) * dist.delta.y;
 	else
 		dist.side.y = (data->player.pos.y - map.y) * dist.delta.y;
-	ft_dda(ray, &dist, &map);
+	ft_dda(data, ray, &dist, &map);
 	if (!ray->side)
 		return (dist.side.x - dist.delta.x);
 	return (dist.side.y - dist.delta.y);

@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 13:25:29 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/15 18:23:21 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_draw_line(t_data *data, t_ray *ray, t_i_xy *xy, t_tex *tex)
 
 	xy->y = 0;
 	while (xy->y < ray->line.start)
-		mlx_put_pixel(data->cub_img, xy->x, xy->y++, 0x87CEEBCE);
+		mlx_put_pixel(data->cub_img, xy->x, xy->y++, data->ceil);
 	while (xy->y < ray->line.end + 1)
 	{
 		tex->y = (int)((double)(xy->y + ray->line.height / 2
@@ -36,7 +36,7 @@ static void	ft_draw_line(t_data *data, t_ray *ray, t_i_xy *xy, t_tex *tex)
 		mlx_put_pixel(data->cub_img, xy->x, xy->y++, color);
 	}
 	while (xy->y < data->mlx->height)
-		mlx_put_pixel(data->cub_img, xy->x, xy->y++, 0x444444FF);
+		mlx_put_pixel(data->cub_img, xy->x, xy->y++, data->floor);
 }
 
 void	ft_draw(t_data *data, t_ray *ray, t_i_xy *xy)

@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 15:47:58 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/15 18:26:04 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 # define EA 3
 
 # define PI 3.141593
-
-extern int				g_map[25][50];
 
 typedef unsigned int	t_u_int;
 
@@ -90,6 +88,11 @@ typedef struct s_data
 	mlx_image_t		*cub_img;
 	mlx_image_t		*mm_img;
 	mlx_texture_t	*tex[4];
+	char			*tex_path[4];
+	t_u_int			ceil;
+	t_u_int			floor;
+    char			**map;
+	t_i_xy			map_size;
 	t_player		player;
 	int				mouse;
 }	t_data;
