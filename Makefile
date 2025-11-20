@@ -18,11 +18,10 @@ NAME = cub3D
 
 SRCS_B = bonus/src/cub3D_bonus.c bonus/src/ft_cub_init_bonus.c bonus/src/ft_cub_loop_bonus.c bonus/src/ft_cub_bonus.c \
 			bonus/src/ft_draw_bonus.c bonus/src/ft_move_player_bonus.c bonus/src/utils_bonus.c bonus/src/ft_mini_map_bonus.c \
-			bonus/src/ft_mouse_bonus.c bonus/parcing_bo/get_next_line/get_next_line.c bonus/parcing_bo/memori_manage/gc_malloc.c \
-			bonus/parcing_bo/memori_manage/memory_util.c bonus/parcing_bo/parcer/main_p.c bonus/parcing_bo/parcer/parce_1_.c \
-			bonus/parcing_bo/parcer/parce_coler.c bonus/parcing_bo/parcer/parce_map_utils.c bonus/parcing_bo/parcer/parce_map.c \
-			bonus/parcing_bo/parcer/parce_utils.c bonus/parcing_bo/parcer/validation_helper.c bonus/parcing_bo/parcer/validation_map.c \
-			bonus/parcing_bo/main.c 
+			bonus/src/ft_mouse_bonus.c bonus/parcing_bo/gc_malloc_bonus.c bonus/parcing_bo/get_next_line_bonus.c bonus/parcing_bo/main_bonus.c \
+			bonus/parcing_bo/main_p_bonus.c bonus/parcing_bo/memory_util_bonus.c bonus/parcing_bo/parce_1_bonus.c bonus/parcing_bo/parce_coler_bonus.c \
+			bonus/parcing_bo/parce_map_bonus.c bonus/parcing_bo/parce_map_utils_bonus.c bonus/parcing_bo/parce_utils_bonus.c \
+			bonus/parcing_bo/validation_helper_bonus.c bonus/parcing_bo/validation_map_bonus.c 
 
 OBJS_B= $(SRCS_B:.c=.o)
 
