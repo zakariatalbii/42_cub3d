@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub3D.h"
 
 static int is_double(char *start,  t_config *data)
 { 

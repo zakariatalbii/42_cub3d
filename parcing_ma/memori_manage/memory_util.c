@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub3D.h"
 
 char	*gc_strndup(const char *line, int start, int end)
 {

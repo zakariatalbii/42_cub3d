@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3D.h"
 
 
-static t_config *parcing(int ac, char **av)
+t_config *parcing(int ac, char **av)
 {
     t_config *map_conf;
 
@@ -33,11 +33,4 @@ static t_config *parcing(int ac, char **av)
         printf("error\n");
     //you do free_all(); after don with staruct;
     return (map_conf);
-}
-
-int main(int ac, char **av)
-{
-    parcing(ac , av);
-    //make_game(parcing(ac , av);
-    return (0);
 }

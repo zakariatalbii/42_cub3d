@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub3D.h"
 
 void assing_position(int y, int x, t_config *data)
 {

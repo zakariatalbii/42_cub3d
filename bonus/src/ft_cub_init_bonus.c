@@ -56,7 +56,7 @@ static int	ft_tex_init(t_data *data)
 	return (0);
 }
 
-int	ft_cub_init(t_data *data)
+int	ft_cub_init(t_data *data, int argc, char **argv)
 {
 	if (ft_game_init(data, argc, argv))
 		return (1);

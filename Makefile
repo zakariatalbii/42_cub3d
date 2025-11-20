@@ -1,4 +1,4 @@
-MLX_REPO = https://github.com/codam-coding-college/MLX42.git
+MLX_REPO = https://github.com/codam-coding-college/MLX42.gitz
 
 MLX = $(HOME)/MLX42
 
@@ -6,7 +6,11 @@ MLX_LIB = $(MLX)/lib/libmlx42.a
 
 MLX_H_DIR = $(MLX)/include/MLX42
 
-SRCS = src/cub3D.c src/ft_cub_init.c src/ft_cub_loop.c src/ft_cub.c src/ft_draw.c src/ft_move_player.c src/utils.c
+SRCS = src/cub3D.c src/ft_cub_init.c src/ft_cub_loop.c src/ft_cub.c src/ft_draw.c src/ft_move_player.c src/utils.c \
+			parcing_ma/get_next_line parcing_ma/memori_manage/gc_malloc.c parcing_ma/memori_manage/memory_util.c \
+			parcing_ma/parcer/main_p.c parcing_ma/parcer/parce_1_.c parcing_ma/parcer/parce_coler.c parcing_ma/parcer/parce_map_utils.c \
+			parcing_ma/parcer/parce_map.c parcing_ma/parcer/parce_utils.c parcing_ma/parcer/validation_helper.c \
+			parcing_ma/parcer/validation_map.c parcing_ma/main.c
 
 OBJS= $(SRCS:.c=.o)
 
@@ -14,7 +18,11 @@ NAME = cub3D
 
 SRCS_B = bonus/src/cub3D_bonus.c bonus/src/ft_cub_init_bonus.c bonus/src/ft_cub_loop_bonus.c bonus/src/ft_cub_bonus.c \
 			bonus/src/ft_draw_bonus.c bonus/src/ft_move_player_bonus.c bonus/src/utils_bonus.c bonus/src/ft_mini_map_bonus.c \
-			bonus/src/ft_mouse_bonus.c
+			bonus/src/ft_mouse_bonus.c bonus/parcing_bo/get_next_line/get_next_line.c bonus/parcing_bo/memori_manage/gc_malloc.c \
+			bonus/parcing_bo/memori_manage/memory_util.c bonus/parcing_bo/parcer/main_p.c bonus/parcing_bo/parcer/parce_1_.c \
+			bonus/parcing_bo/parcer/parce_coler.c bonus/parcing_bo/parcer/parce_map_utils.c bonus/parcing_bo/parcer/parce_map.c \
+			bonus/parcing_bo/parcer/parce_utils.c bonus/parcing_bo/parcer/validation_helper.c bonus/parcing_bo/parcer/validation_map.c \
+			bonus/parcing_bo/main.c 
 
 OBJS_B= $(SRCS_B:.c=.o)
 

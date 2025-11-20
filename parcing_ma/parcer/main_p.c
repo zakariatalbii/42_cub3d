@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub.h"
+#include "cub3D.h"
 
 int negative_map_position(t_config *data)
 {

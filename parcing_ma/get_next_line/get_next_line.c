@@ -1,5 +1,5 @@
 
-# include "../cub.h"
+#include "cub3D.h"
 
 size_t	ft_strlen(char *s)
 {
