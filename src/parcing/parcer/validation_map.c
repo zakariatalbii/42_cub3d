@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:34:46 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/21 16:00:43 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/21 16:21:39 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int assign_tex(char *start,char *line, int i, t_config *data)
 {
 	char *value;
 	
-	
 	if (!start)
 		return (1);
 	value = get_value(line , i);
@@ -70,8 +69,6 @@ int assign_tex(char *start,char *line, int i, t_config *data)
 		data->tex.we = value;
 	if (!ft_strcmp(start, "EA "))
 		data->tex.ea = value;
-	if (check_tex(data))
-		return (1);
 	return (0);
 }
 
@@ -93,5 +90,7 @@ int validation(t_config *data)
 		return (1);
     data->map = prepar_map(data);
 	data->y_rows = get_h(data->map);
+	if (check_tex(data))
+		return (1);
 	return (0);
 }
