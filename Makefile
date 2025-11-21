@@ -7,10 +7,10 @@ MLX_LIB = $(MLX)/lib/libmlx42.a
 MLX_H_DIR = $(MLX)/include/MLX42
 
 SRCS = src/cub3D.c src/ft_cub_init.c src/ft_cub_loop.c src/ft_cub.c src/ft_draw.c src/ft_move_player.c src/utils.c \
-			parcing_ma/get_next_line parcing_ma/memori_manage/gc_malloc.c parcing_ma/memori_manage/memory_util.c \
-			parcing_ma/parcer/main_p.c parcing_ma/parcer/parce_1_.c parcing_ma/parcer/parce_coler.c parcing_ma/parcer/parce_map_utils.c \
-			parcing_ma/parcer/parce_map.c parcing_ma/parcer/parce_utils.c parcing_ma/parcer/validation_helper.c \
-			parcing_ma/parcer/validation_map.c parcing_ma/main.c
+			src/parcing/get_next_line/get_next_line.c src/parcing/memori_manage/gc_malloc.c src/parcing/memori_manage/memory_util.c \
+			src/parcing/parcer/main_p.c src/parcing/parcer/parce_1_.c src/parcing/parcer/parce_coler.c src/parcing/parcer/parce_map_utils.c \
+			src/parcing/parcer/parce_map.c src/parcing/parcer/parce_utils.c src/parcing/parcer/validation_helper.c \
+			src/parcing/parcer/validation_map.c src/parcing/parcing.c
 
 OBJS= $(SRCS:.c=.o)
 
@@ -18,10 +18,10 @@ NAME = cub3D
 
 SRCS_B = bonus/src/cub3D_bonus.c bonus/src/ft_cub_init_bonus.c bonus/src/ft_cub_loop_bonus.c bonus/src/ft_cub_bonus.c \
 			bonus/src/ft_draw_bonus.c bonus/src/ft_move_player_bonus.c bonus/src/utils_bonus.c bonus/src/ft_mini_map_bonus.c \
-			bonus/src/ft_mouse_bonus.c bonus/parcing_bo/gc_malloc_bonus.c bonus/parcing_bo/get_next_line_bonus.c bonus/parcing_bo/main_bonus.c \
-			bonus/parcing_bo/main_p_bonus.c bonus/parcing_bo/memory_util_bonus.c bonus/parcing_bo/parce_1_bonus.c bonus/parcing_bo/parce_coler_bonus.c \
-			bonus/parcing_bo/parce_map_bonus.c bonus/parcing_bo/parce_map_utils_bonus.c bonus/parcing_bo/parce_utils_bonus.c \
-			bonus/parcing_bo/validation_helper_bonus.c bonus/parcing_bo/validation_map_bonus.c 
+			bonus/src/ft_mouse_bonus.c bonus/src/parcing/gc_malloc_bonus.c bonus/src/parcing/get_next_line_bonus.c bonus/src/parcing/parsing_bonus.c \
+			bonus/src/parcing/main_p_bonus.c bonus/src/parcing/memory_util_bonus.c bonus/src/parcing/parce_1_bonus.c bonus/src/parcing/parce_coler_bonus.c \
+			bonus/src/parcing/parce_map_bonus.c bonus/src/parcing/parce_map_utils_bonus.c bonus/src/parcing/parce_utils_bonus.c \
+			bonus/src/parcing/validation_helper_bonus.c bonus/src/parcing/validation_map_bonus.c 
 
 OBJS_B= $(SRCS_B:.c=.o)
 

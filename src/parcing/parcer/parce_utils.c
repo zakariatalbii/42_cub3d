@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parce_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:21 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/13 15:29:12 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:45:00 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub3D.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

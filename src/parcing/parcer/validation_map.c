@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:34:46 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/15 13:40:16 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/21 16:00:43 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	check_tex(t_config *data)
 int assign_tex(char *start,char *line, int i, t_config *data)
 {
 	char *value;
+	
 	
 	if (!start)
 		return (1);

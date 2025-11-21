@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 18:26:04 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/21 15:46:52 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@
 #include  <limits.h>
 # include "MLX42.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
-
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -38,46 +34,6 @@
 # define EA 3
 
 # define PI 3.141593
-
-typedef struct	s_point
-{
-	int x;
-	int y;
-} t_point;
-
-typedef struct s_gc
-{
-    void			*ptr;
-    struct s_gc		*next;
-}	t_gc;
-
-typedef struct s_textures
-{
-    char *no;
-    char *so;
-    char *we;
-    char *ea;
-} t_textures;
-
-typedef struct s_color
-{
-    int r;
-    int g;
-    int b;
-} t_color;
-
-typedef struct s_config
-{
-    t_textures tex;
-    t_color floor;
-    t_color ceil;
-    char **map;
-    int player_x;
-    int player_y;
-    char player_dir;
-    int y_rows;
-    int x_cols;
-} t_config;
 
 
 typedef unsigned int	t_u_int;
@@ -145,6 +101,71 @@ typedef struct s_data
 	int				mouse;
 }	t_data;
 
+int		ft_cub_init(t_data *data, int argc, char **argv);
+int		ft_cub_loop(t_data *data);
+
+void	ft_cub(void *param);
+void	ft_draw(t_data *data, t_ray *ray, t_i_xy *xy);
+
+void	ft_mini_map(void *param);
+
+void	ft_move_player(void *param);
+void	ft_rotate1(t_data *data);
+void	ft_rotate2(t_data *data);
+
+void	ft_mouse_rotate(double xpos, double ypos, void *param);
+void	ft_mouse_mode(mouse_key_t button, action_t action, modifier_key_t mods,
+			void *param);
+
+int		ft_iswall(double x, double y);
+t_u_int	ft_color(t_u_int r, t_u_int g, t_u_int b, t_u_int a);
+	
+/* **************************** parcing ***************************** */
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
+
+typedef struct	s_point
+{
+	int x;
+	int y;
+} t_point;
+
+typedef struct s_gc
+{
+	void			*ptr;
+	struct s_gc		*next;
+}	t_gc;
+
+typedef struct s_textures
+{
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+} t_textures;
+
+typedef struct s_color
+{
+	int r;
+	int g;
+	int b;
+} t_color;
+
+typedef struct s_config
+{
+	t_textures tex;
+	t_color floor;
+	t_color ceil;
+	char **map;
+	int player_x;
+	int player_y;
+	char player_dir;
+	int y_rows;
+	int x_cols;
+} t_config;
+
 //malloc_free;
 void	*gc_malloc(size_t size);
 void free_ptr(void *ptr);
@@ -173,7 +194,7 @@ int	ft_strcmp(char *s1, char *s2);
 int is_space(char c);
 
 
-    //validation
+//validation
 int validation(t_config *data);
 int is_player(char c);
 int	flood_fill(char **map, t_point p, int height, int width);
@@ -198,24 +219,6 @@ size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *left_str, char *buff);
 char	*ft_get_line(char *left_str);
 char	*ft_new_left_str(char *left_str);
-
-int		ft_cub_init(t_data *data);
-int		ft_cub_loop(t_data *data);
-
-void	ft_cub(void *param);
-void	ft_draw(t_data *data, t_ray *ray, t_i_xy *xy);
-
-void	ft_mini_map(void *param);
-
-void	ft_move_player(void *param);
-void	ft_rotate1(t_data *data);
-void	ft_rotate2(t_data *data);
-
-void	ft_mouse_rotate(double xpos, double ypos, void *param);
-void	ft_mouse_mode(mouse_key_t button, action_t action, modifier_key_t mods,
-			void *param);
-
-int		ft_iswall(double x, double y);
-t_u_int	ft_color(t_u_int r, t_u_int g, t_u_int b, t_u_int a);
+t_config	*parcing(int ac, char **av);
 
 #endif

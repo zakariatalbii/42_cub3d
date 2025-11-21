@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:17:51 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/15 13:57:45 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/21 15:52:54 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub3D.h"
 
-static t_config *parcing(int ac, char **av)
+t_config *parcing(int ac, char **av)
 {
     t_config *map_conf;
 
@@ -26,17 +26,11 @@ static t_config *parcing(int ac, char **av)
         {
             free_all();
             printf("error\n");
+			return (NULL);
         }
     }
     else
         printf("error\n");
     //you do free_all(); after don with staruct;
     return (map_conf);
-}
-
-int main(int ac, char **av)
-{
-    parcing(ac , av);
-    //make_game(parcing(ac , av);
-    return (0);
 }
