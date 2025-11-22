@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:34:46 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/21 16:21:39 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/22 16:12:17 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ int validation(t_config *data)
 	s_map = prepar_map(data);
 	if (!s_map)
 		return (1);
+	data->y_rows = get_h(data->map);
 	if (check_inside(s_map, data))
 		return (1);
+	find_and_replace_player(data->map, data);
     data->map = prepar_map(data);
-	data->y_rows = get_h(data->map);
 	if (check_tex(data))
 		return (1);
 	return (0);

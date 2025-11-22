@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_helper.c                                :+:      :+:    :+:   */
+/*   validation_helper_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 11:56:15 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/15 13:51:02 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/22 16:15:33 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int get_h(char**map)
 
 int map_char(char c, t_config *data, int x, int y)
 {
-	
 	if (c == 'D')
 	{
 		if (parcing_dor(data, y, x))
@@ -43,22 +42,24 @@ void assing_position(int y, int x, t_config *data)
 	data->player_x = x;
 	data->player_y = y;
 }
-int	fill_inside(char **map, t_point p, int height, int width)
+int	fill_inside(char **map, t_point p, t_config *data)
 {
-	if (p.x < 0 || p.y < 0 || p.y >= height || p.x >= width)
+	if (p.x < 0 || p.y < 0 || p.y >= data->y_rows || p.x >= data->x_cols)
 		return (1);
 	if (map[p.y][p.x] == '1' || map[p.y][p.x] == 'V')
 		return (0);
 	if (map[p.y][p.x] == ' ')
 		return (1);
+	if (is_player(map[p.y][p.x]))
+		assing_position(p.y, p.x, data);
 	map[p.y][p.x] = 'V';
-	if (fill_inside(map, (t_point){p.x + 1, p.y}, height, width))
+	if (fill_inside(map, (t_point){p.x + 1, p.y}, data))
 		return (1);
-	if (fill_inside(map, (t_point){p.x - 1, p.y}, height, width))
+	if (fill_inside(map, (t_point){p.x - 1, p.y}, data))
 		return (1);
-	if (fill_inside(map, (t_point){p.x, p.y + 1}, height, width))
+	if (fill_inside(map, (t_point){p.x, p.y + 1}, data))
 		return (1);
-	if (fill_inside(map, (t_point){p.x, p.y - 1}, height, width))
+	if (fill_inside(map, (t_point){p.x, p.y - 1}, data))
 		return (1);
 	return (0);
 }
@@ -77,8 +78,6 @@ int check_inside(char **map, t_config *data)
 		{
 			if (map[i][j] == '0' || is_player(map[i][j]) || map[i][j] == 'D')
 			{
-				if (is_player(map[i][j]))
-					assing_position(i, j, data);
 				p.x = j;
 				p.y = i;
 				if (fill_inside(map, p, get_h(map), get_long(data)))

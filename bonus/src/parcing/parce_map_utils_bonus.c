@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_map_utils.c                                  :+:      :+:    :+:   */
+/*   parce_map_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:45:31 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/15 13:53:20 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/22 16:18:36 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,25 @@ int is_player(char c)
 	return (c == 'W' || c == 'E' || c == 'S' || c == 'N');	
 }
 
-int	fill(char **map, t_point p, int height, int width)
-{
-	if (p.x < 0 || p.y < 0 || p.y >= height || p.x >= width)
-		return (0);
-	if (map[p.y][p.x] == '0' || is_player(map[p.y][p.x]))
-		return (1);
-	if (map[p.y][p.x] == ' ')
-	{
-		map[p.y][p.x] = 'V';
-		if (fill(map, (t_point){p.x - 1, p.y}, height, width)
-			|| fill(map, (t_point){p.x + 1, p.y}, height, width)
-			|| fill(map, (t_point){p.x, p.y - 1}, height, width)
-			|| fill(map, (t_point){p.x, p.y + 1}, height, width))
-			return (1);
-	}
-	return (0);
-}
+// int	fill(char **map, t_point p, int height, int width)
+// {
+// 	if (p.x < 0 || p.y < 0 || p.y >= height || p.x >= width)
+// 		return (0);
+// 	if (map[p.y][p.x] == '0' || is_player(map[p.y][p.x]))
+// 		return (1);
+// 	if (map[p.y][p.x] == ' ')
+// 	{
+// 		map[p.y][p.x] = 'V';
+// 		if (fill(map, (t_point){p.x - 1, p.y}, height, width)
+// 			|| fill(map, (t_point){p.x + 1, p.y}, height, width)
+// 			|| fill(map, (t_point){p.x, p.y - 1}, height, width)
+// 			|| fill(map, (t_point){p.x, p.y + 1}, height, width))
+// 			return (1);
+// 	}
+// 	return (0);
+// }
 
-int	flood_fill(char **map, t_point p, int height, int width)
-{
-	return (fill(map, p, height, width));
-}
+// int	flood_fill(char **map, t_point p, int height, int width)
+// {
+// 	return (fill(map, p, height, width));
+//}
