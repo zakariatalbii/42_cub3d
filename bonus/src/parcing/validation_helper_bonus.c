@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_helper_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 11:56:15 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:15:25 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/22 22:25:42 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int check_inside(char **map, t_config *data)
 			{
 				p.x = j;
 				p.y = i;
-				if (fill_inside(map, p, get_h(map), get_long(data)))
+				if (fill_inside(map, p, data))
 					return (1);
 			}
 			j++;

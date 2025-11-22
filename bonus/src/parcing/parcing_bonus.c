@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   parcing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:17:51 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:15:20 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/22 22:26:28 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
+
+void	find_and_replace_player(char **map, t_config *data)
+{
+	int i = 0;
+	int j;
+
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (is_player(map[i][j]))
+			{
+				data->player_dir = map[i][j];
+				map[i][j] = '0';
+				return;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 t_config *parcing(int ac, char **av)
 {

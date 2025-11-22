@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/22 17:10:44 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/22 22:26:47 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ int map_char(char c, t_config *data, int x, int y);
 int assign_tex(char *start,char *line, int i, t_config *data);
 int check(int fd);
 int parcing_dor(t_config *data, int y, int x);
+void	find_and_replace_player(char **map, t_config *data);
 
 
 //grtnext_line
