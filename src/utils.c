@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 17:32:46 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/22 16:45:22 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_iswall(t_data *data, double x, double y)
 {
-	if ((data->map[(int)y][(int)(x + .1)] == 1)
-		|| (data->map[(int)y][(int)(x - .1)] == 1)
-		|| (data->map[(int)(y + .1)][(int)x] == 1)
-		|| (data->map[(int)(y - .1)][(int)x] == 1)
-		|| (data->map[(int)(y + .1)][(int)(x + .1)] == 1)
-		|| (data->map[(int)(y + .1)][(int)(x - .1)] == 1)
-		|| (data->map[(int)(y - .1)][(int)(x + .1)] == 1)
-		|| (data->map[(int)(y - .1)][(int)(x - .1)] == 1))
+	if ((data->map[(int)y][(int)(x + .1)] == '1')
+		|| (data->map[(int)y][(int)(x - .1)] == '1')
+		|| (data->map[(int)(y + .1)][(int)x] == '1')
+		|| (data->map[(int)(y - .1)][(int)x] == '1')
+		|| (data->map[(int)(y + .1)][(int)(x + .1)] == '1')
+		|| (data->map[(int)(y + .1)][(int)(x - .1)] == '1')
+		|| (data->map[(int)(y - .1)][(int)(x + .1)] == '1')
+		|| (data->map[(int)(y - .1)][(int)(x - .1)] == '1'))
 		return (1);
 	return (0);
 }

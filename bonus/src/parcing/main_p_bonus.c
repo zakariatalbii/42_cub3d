@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_p.c                                           :+:      :+:    :+:   */
+/*   main_p_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:22:08 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/13 15:46:52 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:14:45 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub.h"
+# include "cub3D_bonus.h"
 
 int negative_map_position(t_config *data)
 {

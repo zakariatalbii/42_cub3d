@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/21 15:53:15 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/22 16:37:37 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static int	ft_game_init(t_data *data, int argc, char **argv)
 		return (1);
 	data->player.pos.x = conf->player_x + .5;
 	data->player.pos.y = conf->player_y + .5;
-	data->player.dir.x = (conf->player_dir == 'e') - (conf->player_dir == 'w');
-	data->player.dir.y = (conf->player_dir == 'n') - (conf->player_dir == 's');
-	data->player.plane.x = ((conf->player_dir == 'n')
-			- (conf->player_dir == 's')) * tan(PI / 6);
-	data->player.plane.y = ((conf->player_dir == 'w')
-			- (conf->player_dir == 'e')) * tan(PI / 6);
+	data->player.dir.x = (conf->player_dir == 'E') - (conf->player_dir == 'W');
+	data->player.dir.y = (conf->player_dir == 'N') - (conf->player_dir == 'S');
+	data->player.plane.x = ((conf->player_dir == 'N')
+			- (conf->player_dir == 'S')) * tan(PI / 6);
+	data->player.plane.y = ((conf->player_dir == 'W')
+			- (conf->player_dir == 'E')) * tan(PI / 6);
 	data->tex_path[NO] = conf->tex.no;
 	data->tex_path[SO] = conf->tex.so;
 	data->tex_path[WE] = conf->tex.we;

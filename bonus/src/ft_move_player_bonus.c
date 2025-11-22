@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 15:28:23 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/22 17:12:14 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ static void	ft_move1(t_data *data, keys_t key)
 {
 	if (key == MLX_KEY_W)
 	{
-		if (!ft_iswall(data->player.pos.x + .1 * data->player.dir.x,
+		if (!ft_iswall(data, data->player.pos.x + .1 * data->player.dir.x,
 				data->player.pos.y))
 			data->player.pos.x += .1 * data->player.dir.x;
-		if (!ft_iswall(data->player.pos.x,
+		if (!ft_iswall(data, data->player.pos.x,
 				data->player.pos.y - .1 * data->player.dir.y))
 			data->player.pos.y -= .1 * data->player.dir.y;
 	}
 	if (key == MLX_KEY_S)
 	{
-		if (!ft_iswall(data->player.pos.x - .1 * data->player.dir.x,
+		if (!ft_iswall(data, data->player.pos.x - .1 * data->player.dir.x,
 				data->player.pos.y))
 			data->player.pos.x -= .1 * data->player.dir.x;
-		if (!ft_iswall(data->player.pos.x,
+		if (!ft_iswall(data, data->player.pos.x,
 				data->player.pos.y + .1 * data->player.dir.y))
 			data->player.pos.y += .1 * data->player.dir.y;
 	}
@@ -38,19 +38,19 @@ static void	ft_move2(t_data *data, keys_t key)
 {
 	if (key == MLX_KEY_D)
 	{
-		if (!ft_iswall(data->player.pos.x + .1 * data->player.dir.y,
+		if (!ft_iswall(data, data->player.pos.x + .1 * data->player.dir.y,
 				data->player.pos.y))
 			data->player.pos.x += .1 * data->player.dir.y;
-		if (!ft_iswall(data->player.pos.x,
+		if (!ft_iswall(data, data->player.pos.x,
 				data->player.pos.y + .1 * data->player.dir.x))
 			data->player.pos.y += .1 * data->player.dir.x;
 	}
 	if (key == MLX_KEY_A)
 	{
-		if (!ft_iswall(data->player.pos.x - .1 * data->player.dir.y,
+		if (!ft_iswall(data, data->player.pos.x - .1 * data->player.dir.y,
 				data->player.pos.y))
 			data->player.pos.x -= .1 * data->player.dir.y;
-		if (!ft_iswall(data->player.pos.x,
+		if (!ft_iswall(data, data->player.pos.x,
 				data->player.pos.y - .1 * data->player.dir.x))
 			data->player.pos.y -= .1 * data->player.dir.x;
 	}

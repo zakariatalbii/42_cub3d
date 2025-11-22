@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/22 16:17:04 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:10:44 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	ft_mouse_rotate(double xpos, double ypos, void *param);
 void	ft_mouse_mode(mouse_key_t button, action_t action, modifier_key_t mods,
 			void *param);
 
-int		ft_iswall(double x, double y);
+int		ft_iswall(t_data *data, double x, double y);
 t_u_int	ft_color(t_u_int r, t_u_int g, t_u_int b, t_u_int a);
 	
 /* **************************** parcing ***************************** */

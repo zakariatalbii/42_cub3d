@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validation_helper_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 11:56:15 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 16:15:33 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:15:25 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub3D_bonus.h"
 
 int get_h(char**map)
 {

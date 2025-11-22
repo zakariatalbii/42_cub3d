@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parce_map_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:45:31 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 16:18:36 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:15:10 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub3D_bonus.h"
 
 int only_spaces(char *s)
 {

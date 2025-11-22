@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_1_.c                                         :+:      :+:    :+:   */
+/*   parce_1_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:51:56 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/15 13:53:58 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:14:55 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub3D_bonus.h"
 
 static int is_double(char *start,  t_config *data)
 { 

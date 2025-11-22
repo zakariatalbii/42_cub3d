@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 09:40:14 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 18:29:57 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/22 17:36:26 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ void	ft_mini_map(void *param)
 		{
 			map.x = xy.x / 32. + (data->player.pos.x - (int)data->mm_img->width / (2 * 32.));
 			map.y = xy.y / 32. + (data->player.pos.y - (int)data->mm_img->height / (2 * 32.));
-			if (map.x < 0 || map.x >= data->map_size.x || map.y < 0 || map.y >= data->map_size.y)
+			if (data->map[map.y][map.x] == ' ' || map.x < 0 || map.x >= data->map_size.x
+				|| map.y < 0 || map.y >= data->map_size.y)
 				mlx_put_pixel(data->mm_img, xy.x, xy.y, 0x141419FF);
-			else if (g_map[map.y][map.x] == 1)
+			else if (data->map[map.y][map.x] == '1')
 				mlx_put_pixel(data->mm_img, xy.x, xy.y, 0x2D2D37FF);
 			else
 				mlx_put_pixel(data->mm_img, xy.x, xy.y, 0x649B64FF);
