@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:17:51 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 22:26:28 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/24 00:06:25 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,14 @@ t_config *parcing(int ac, char **av)
         {
             free_all();
             printf("error\n");
+			return (NULL);
         }
     }
     else
+    {
+        free_all();
         printf("error\n");
-    //you do free_all(); after don with staruct;
+		return (NULL);
+    }
     return (map_conf);
 }
