@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/22 22:26:47 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/24 20:59:51 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,19 @@ typedef struct s_data
 	t_player		player;
 	int				mouse;
 }	t_data;
+
+typedef struct s_anim 
+{
+	mlx_image_t *frames[42]; 
+	int current_frame; 
+	int total_frames; 
+	int frame_delay; 
+	int counter; 
+	bool playing; 
+	int win_w; 
+	int win_h; 
+	t_data *data;
+} t_anim;
 
 int		ft_cub_init(t_data *data, int argc, char **argv);
 int		ft_cub_loop(t_data *data);
@@ -221,5 +234,9 @@ char	*ft_strjoin(char *left_str, char *buff);
 char	*ft_get_line(char *left_str);
 char	*ft_new_left_str(char *left_str);
 t_config	*parcing(int ac, char **av);
+
+//animation
+void animation(void *param);
+void init_anim(t_anim *anim, t_data *data);
 
 #endif

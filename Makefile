@@ -21,7 +21,7 @@ SRCS_B = bonus/src/cub3D_bonus.c bonus/src/ft_cub_init_bonus.c bonus/src/ft_cub_
 			bonus/src/parcing/gc_malloc_bonus.c bonus/src/parcing/get_next_line_bonus.c bonus/src/parcing/parcing_bonus.c \
 			bonus/src/parcing/main_p_bonus.c bonus/src/parcing/memory_util_bonus.c bonus/src/parcing/parce_1_bonus.c bonus/src/parcing/parce_coler_bonus.c \
 			bonus/src/parcing/parce_map_bonus.c bonus/src/parcing/parce_map_utils_bonus.c bonus/src/parcing/parce_utils_bonus.c \
-			bonus/src/parcing/validation_helper_bonus.c bonus/src/parcing/validation_map_bonus.c 
+			bonus/src/parcing/validation_helper_bonus.c bonus/src/animation_bonus.c bonus/src/parcing/validation_map_bonus.c 
 
 OBJS_B= $(SRCS_B:.c=.o)
 
