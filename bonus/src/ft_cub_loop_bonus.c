@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cub_loop_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/24 22:02:37 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/25 22:33:22 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,14 @@ static void	ft_keypress(mlx_key_data_t keydata, void *param)
 
 int	ft_cub_loop(t_data *data)
 {
-	t_anim anim;
-	
 	if (!mlx_loop_hook(data->mlx, ft_cub, data))
 		return (1);
 	if (!mlx_loop_hook(data->mlx, ft_mini_map, data))
 		return (1);
 	if (!mlx_loop_hook(data->mlx, ft_move_player, data))
 		return (1);
-	
-	anim.data = data;
-	init_anim(&anim,  data);
-	if (!mlx_loop_hook(data->mlx, animation, &anim))
+	if (!mlx_loop_hook(data->mlx, ft_animation, &data->anime))
 		return (1);
-
 	ft_mouse_hook(data);
 	mlx_key_hook(data->mlx, ft_keypress, data);
 	mlx_loop(data->mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/24 20:59:51 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/25 22:34:02 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,16 @@ typedef struct s_ray
 	int		side;
 }	t_ray;
 
+#define FRAMES 42
+
+typedef struct	s_anime
+{
+	mlx_image_t		*img;
+	mlx_texture_t	*frames[FRAMES];
+	int				frame_count;
+	int				frame_delay;
+}	t_anime;
+
 typedef struct s_data
 {
 	mlx_t			*mlx;
@@ -99,20 +109,8 @@ typedef struct s_data
 	t_i_xy			map_size;
 	t_player		player;
 	int				mouse;
+	t_anime			anime;
 }	t_data;
-
-typedef struct s_anim 
-{
-	mlx_image_t *frames[42]; 
-	int current_frame; 
-	int total_frames; 
-	int frame_delay; 
-	int counter; 
-	bool playing; 
-	int win_w; 
-	int win_h; 
-	t_data *data;
-} t_anim;
 
 int		ft_cub_init(t_data *data, int argc, char **argv);
 int		ft_cub_loop(t_data *data);
@@ -132,6 +130,9 @@ void	ft_mouse_mode(mouse_key_t button, action_t action, modifier_key_t mods,
 
 int		ft_iswall(t_data *data, double x, double y);
 t_u_int	ft_color(t_u_int r, t_u_int g, t_u_int b, t_u_int a);
+
+int		ft_anime_init(t_data *data, t_anime *anime);
+void	ft_animation(void *param);
 	
 /* **************************** parcing ***************************** */
 
@@ -234,9 +235,5 @@ char	*ft_strjoin(char *left_str, char *buff);
 char	*ft_get_line(char *left_str);
 char	*ft_new_left_str(char *left_str);
 t_config	*parcing(int ac, char **av);
-
-//animation
-void animation(void *param);
-void init_anim(t_anim *anim, t_data *data);
 
 #endif

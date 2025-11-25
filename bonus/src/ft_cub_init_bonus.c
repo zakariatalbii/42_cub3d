@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/22 17:00:19 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/25 22:28:49 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	ft_cub_init(t_data *data, int argc, char **argv)
 	if (!data->mm_img)
 		return (1);
 	if (mlx_image_to_window(data->mlx, data->cub_img, 0, 0) < 0)
+		return (1);
+	if (ft_anime_init(data, &data->anime))
 		return (1);
 	if (mlx_image_to_window(data->mlx, data->mm_img,
 			data->mlx->width - data->mlx->width / 4,

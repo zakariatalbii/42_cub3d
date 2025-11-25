@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/24 20:08:24 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/25 23:02:44 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
+
+static void	ft_anime_zero(t_anime *anime)
+{
+	int	i;
+
+	i = 0;
+	while (i < FRAMES)
+		anime->frames[i++] = NULL;
+	anime->img = NULL;
+	anime->frame_count = 0;
+	anime->frame_delay = 2;
+}
+
+static void	ft_anime_terminate(t_data *data, t_anime *anime)
+{
+	int	i;
+
+	i = 0;
+	while (i < FRAMES)
+	{
+		if (anime->frames[i])
+			mlx_delete_texture(anime->frames[i]);
+		i++;
+	}
+	if (anime->img)
+		mlx_delete_image(data->mlx, anime->img);
+}
 
 static void	ft_cub_zero(t_data *data)
 {
@@ -21,10 +48,12 @@ static void	ft_cub_zero(t_data *data)
 	data->tex[SO] = NULL;
 	data->tex[WE] = NULL;
 	data->tex[EA] = NULL;
+	ft_anime_zero(&data->anime);
 }
 
 static void	ft_cub_terminate(t_data *data)
 {
+	ft_anime_terminate(data, &data->anime);
 	if (data->tex[NO])
 		mlx_delete_texture(data->tex[NO]);
 	if (data->tex[SO])
