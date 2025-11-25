@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_map_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:34:46 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:15:31 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/25 12:07:42 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ int check(int fd)
 int validation(t_config *data)
 {
 	char **s_map;
-	
+
+	if (!data->map)
+		return (1);
 	if (validation_char_map(data))
 		return (1);
 	s_map = prepar_map(data);

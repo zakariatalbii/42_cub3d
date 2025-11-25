@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:34:46 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 16:12:17 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/25 12:03:09 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,12 @@ int validation(t_config *data)
 {
 	char **s_map;
 	
+	if (!data->map)
+		return (1);
 	if (validation_char_map(data))
 		return (1);
 	s_map = prepar_map(data);
+
 	if (!s_map)
 		return (1);
 	data->y_rows = get_h(data->map);
