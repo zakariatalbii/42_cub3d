@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/25 22:33:22 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 23:26:30 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	ft_keypress(mlx_key_data_t keydata, void *param)
 	data = (t_data *)param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(data->mlx);
+	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		ft_door(data);
 }
 
 int	ft_cub_loop(t_data *data)
@@ -36,6 +38,8 @@ int	ft_cub_loop(t_data *data)
 	if (!mlx_loop_hook(data->mlx, ft_mini_map, data))
 		return (1);
 	if (!mlx_loop_hook(data->mlx, ft_move_player, data))
+		return (1);
+	if (!mlx_loop_hook(data->mlx, ft_door_hook, data))
 		return (1);
 	if (!mlx_loop_hook(data->mlx, ft_animation, &data->anime))
 		return (1);

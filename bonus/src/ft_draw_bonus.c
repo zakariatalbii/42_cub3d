@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 18:23:21 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 00:18:25 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ void	ft_draw(t_data *data, t_ray *ray, t_i_xy *xy)
 	double	coll_rate;
 	t_tex	tex;
 
-	if (!ray->side && ray->dir.x < 0)
+	if (ray->isdoor)
+		tex.id = DR;
+	else if (!ray->side && ray->dir.x < 0)
 		tex.id = WE;
 	else if (!ray->side)
 		tex.id = EA;
-	if (ray->side && ray->dir.y < 0)
+	else if (ray->side && ray->dir.y < 0)
 		tex.id = SO;
 	else if (ray->side)
 		tex.id = NO;

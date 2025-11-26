@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/25 22:28:49 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 23:26:38 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ static int	ft_tex_init(t_data *data)
 	if (!data->tex[WE])
 		return (1);
 	data->tex[EA] = mlx_load_png(data->tex_path[EA]);
+	if (!data->tex[EA])
+		return (1);
+	data->tex[DR] = mlx_load_png("./textures/door.png");
 	if (!data->tex[EA])
 		return (1);
 	return (0);

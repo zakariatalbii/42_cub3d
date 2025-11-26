@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:36:15 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/25 23:02:49 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 00:17:22 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	ft_texture_to_image(mlx_image_t *img, mlx_texture_t *tex)
 	t_i_xy	xy;
 
 	xy.y = 0;
-	while (xy.y < img->height)
+	while (xy.y < (int)img->height)
 	{
-		tex_xy.y = xy.y * tex->height / img->height;
+		tex_xy.y = xy.y * tex->height / (int)img->height;
 		xy.x = 0;
-		while (xy.x < img->width)
+		while (xy.x < (int)img->width)
 		{
-			tex_xy.x = xy.x * tex->width / img->width;
+			tex_xy.x = xy.x * tex->width / (int)img->width;
 			color = ft_color(tex->pixels[(tex_xy.x + tex_xy.y * tex->width)
 					* tex->bytes_per_pixel],
 					tex->pixels[(tex_xy.x + tex_xy.y * tex->width)
@@ -43,10 +43,10 @@ static void	ft_texture_to_image(mlx_image_t *img, mlx_texture_t *tex)
 
 static int	ft_load_frame(t_anime *anime, int id)
 {
-    char path[256];
+	char	path[256];
 
 	snprintf(path, 256, "./bonus/frames/frame%d.png", id + 1);
-    anime->frames[id] = mlx_load_png(path);
+	anime->frames[id] = mlx_load_png(path);
 	if (!anime->frames[id])
 		return (1);
 	return (0);
@@ -54,7 +54,7 @@ static int	ft_load_frame(t_anime *anime, int id)
 
 static int	ft_load_frames(t_anime *anime)
 {
-    int	i;
+	int	i;
 
 	i = 0;
 	while (i < FRAMES)
@@ -81,9 +81,11 @@ int	ft_anime_init(t_data *data, t_anime *anime)
 
 void	ft_animation(void *param)
 {
-	t_anime *anime;
+	t_anime	*anime;
 
-    anime = (t_anime *)param;
+	anime = (t_anime *)param;
+	if (!anime->enabled)
+		return ;
 	if (anime->frame_delay)
 	{
 		anime->frame_delay--;
@@ -92,6 +94,11 @@ void	ft_animation(void *param)
 	ft_texture_to_image(anime->img, anime->frames[anime->frame_count]);
 	anime->frame_count++;
 	if (anime->frame_count == FRAMES)
+	{
 		anime->frame_count = 0;
+		ft_texture_to_image(anime->img, anime->frames[anime->frame_count]);
+		anime->enabled = 0;
+		anime->img->enabled = 0;
+	}
 	anime->frame_delay = 2;
 }

@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/25 22:34:02 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 23:40:46 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@
 # define SO 1
 # define WE 2
 # define EA 3
+# define DR 4
 
 # define PI 3.141593
 
-
 typedef unsigned int	t_u_int;
+typedef long long		t_time;
 
 typedef struct s_i_xy
 {
@@ -84,7 +85,15 @@ typedef struct s_ray
 	double	perp_wall_dist;
 	t_line	line;
 	int		side;
+	int		isdoor;
 }	t_ray;
+
+typedef struct	s_door
+{
+	t_i_xy	pos;
+	t_time	open_t;
+	int		isopen;
+}	t_door;
 
 #define FRAMES 42
 
@@ -94,6 +103,7 @@ typedef struct	s_anime
 	mlx_texture_t	*frames[FRAMES];
 	int				frame_count;
 	int				frame_delay;
+	int				enabled;
 }	t_anime;
 
 typedef struct s_data
@@ -101,7 +111,7 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*cub_img;
 	mlx_image_t		*mm_img;
-	mlx_texture_t	*tex[4];
+	mlx_texture_t	*tex[5];
 	char			*tex_path[4];
 	t_u_int			ceil;
 	t_u_int			floor;
@@ -110,6 +120,7 @@ typedef struct s_data
 	t_player		player;
 	int				mouse;
 	t_anime			anime;
+	t_door			door[2];
 }	t_data;
 
 int		ft_cub_init(t_data *data, int argc, char **argv);
@@ -133,6 +144,9 @@ t_u_int	ft_color(t_u_int r, t_u_int g, t_u_int b, t_u_int a);
 
 int		ft_anime_init(t_data *data, t_anime *anime);
 void	ft_animation(void *param);
+
+void	ft_door(t_data *data);
+void	ft_door_hook(void *param);
 	
 /* **************************** parcing ***************************** */
 

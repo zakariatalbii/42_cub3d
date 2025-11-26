@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 09:40:14 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/22 23:24:13 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 23:30:34 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	ft_mini_player(t_data *data)
 		c.x = c0.x - d.x;
 		while (c.x >= 0 && c.x <= c0.x + d.x)
 		{
-			if (pow(c.y - c0.y + data->player.dir.y * r / 2, 2)
-				+ pow(c.x - c0.x - data->player.dir.x * r / 2, 2) <= pow(r / 2, 2))
+			if (pow(c.y - c0.y + data->player.dir.y * r / 2, 2) + pow(c.x
+					- c0.x - data->player.dir.x * r / 2, 2) <= pow(r / 2, 2))
 				mlx_put_pixel(data->mm_img, c.x, c.y, 0xFFB4DCFF);
 			else
 				mlx_put_pixel(data->mm_img, c.x, c.y, 0xC8325AFF);
@@ -39,6 +39,18 @@ static void	ft_mini_player(t_data *data)
 		}
 		c.y++;
 	}
+}
+
+static void	ft_draw_map(t_data *data, t_i_xy *map, t_i_xy *xy)
+{
+	if (data->map[map->y][map->x] == 'D')
+		mlx_put_pixel(data->mm_img, xy->x, xy->y, 0x880000FF);
+	else if (data->map[map->y][map->x] == 'd')
+		mlx_put_pixel(data->mm_img, xy->x, xy->y, 0x440000FF);
+	else if (data->map[map->y][map->x] == '1')
+		mlx_put_pixel(data->mm_img, xy->x, xy->y, 0x2D2D37FF);
+	else
+		mlx_put_pixel(data->mm_img, xy->x, xy->y, 0x649B64FF);
 }
 
 void	ft_mini_map(void *param)
@@ -54,16 +66,15 @@ void	ft_mini_map(void *param)
 		xy.x = 0;
 		while (xy.x < (int)data->mm_img->width)
 		{
-			map.x = xy.x / 32. + (data->player.pos.x - (int)data->mm_img->width / (2 * 32.));
-			map.y = xy.y / 32. + (data->player.pos.y - (int)data->mm_img->height / (2 * 32.));
-			if (map.x < 0 || map.x >= data->map_size.x
-				|| map.y < 0 || map.y >= data->map_size.y
-				|| data->map[map.y][map.x] == ' ')
+			map.x = xy.x / 32.
+				+ (data->player.pos.x - (int)data->mm_img->width / (2 * 32.));
+			map.y = xy.y / 32.
+				+ (data->player.pos.y - (int)data->mm_img->height / (2 * 32.));
+			if (map.x < 0 || map.y < 0 || map.x >= data->map_size.x
+				|| map.y >= data->map_size.y || data->map[map.y][map.x] == ' ')
 				mlx_put_pixel(data->mm_img, xy.x, xy.y, 0x141419FF);
-			else if (data->map[map.y][map.x] == '1')
-				mlx_put_pixel(data->mm_img, xy.x, xy.y, 0x2D2D37FF);
 			else
-				mlx_put_pixel(data->mm_img, xy.x, xy.y, 0x649B64FF);
+				ft_draw_map(data, &map, &xy);
 			xy.x++;
 		}
 		xy.y++;

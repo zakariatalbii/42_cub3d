@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 22:44:19 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/22 17:02:49 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 16:42:24 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_dda(t_data *data, t_ray *ray, t_dist *dist, t_i_xy *map)
 {
-	while (data->map[map->y][map->x] == '0')
+	while (data->map[map->y][map->x] == '0' || data->map[map->y][map->x] == 'd')
 	{
 		if (dist->side.x < dist->side.y)
 		{
@@ -29,6 +29,7 @@ static void	ft_dda(t_data *data, t_ray *ray, t_dist *dist, t_i_xy *map)
 			ray->side = 1;
 		}
 	}
+	ray->isdoor = (data->map[map->y][map->x] == 'D');
 }
 
 static double	ft_perp_wall_dist(t_data *data, t_ray *ray)

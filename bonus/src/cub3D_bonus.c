@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/25 23:02:44 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 00:15:42 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	ft_anime_zero(t_anime *anime)
 	anime->img = NULL;
 	anime->frame_count = 0;
 	anime->frame_delay = 2;
+	anime->enabled = 0;
 }
 
 static void	ft_anime_terminate(t_data *data, t_anime *anime)
@@ -48,6 +49,9 @@ static void	ft_cub_zero(t_data *data)
 	data->tex[SO] = NULL;
 	data->tex[WE] = NULL;
 	data->tex[EA] = NULL;
+	data->tex[DR] = NULL;
+	data->door[0].isopen = 0;
+	data->door[1].isopen = 0;
 	ft_anime_zero(&data->anime);
 }
 
@@ -62,6 +66,8 @@ static void	ft_cub_terminate(t_data *data)
 		mlx_delete_texture(data->tex[WE]);
 	if (data->tex[EA])
 		mlx_delete_texture(data->tex[EA]);
+	if (data->tex[DR])
+		mlx_delete_texture(data->tex[DR]);
 	if (data->cub_img)
 		mlx_delete_image(data->mlx, data->cub_img);
 	if (data->mm_img)
