@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/22 17:12:14 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 09:30:24 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,36 +56,36 @@ static void	ft_move2(t_data *data, keys_t key)
 	}
 }
 
-void	ft_rotate1(t_data *data)
+void	ft_rotate1(t_data *data, double rs)
 {
 	double	tmp;
 
 	tmp = data->player.dir.x;
-	data->player.dir.x = data->player.dir.x * cos(PI / 36.)
-		- data->player.dir.y * sin(PI / 36.);
-	data->player.dir.y = data->player.dir.y * cos(PI / 36.)
-		+ tmp * sin(PI / 36.);
+	data->player.dir.x = data->player.dir.x * cos(rs)
+		- data->player.dir.y * sin(rs);
+	data->player.dir.y = data->player.dir.y * cos(rs)
+		+ tmp * sin(rs);
 	tmp = data->player.plane.x;
-	data->player.plane.x = data->player.plane.x * cos(PI / 36.)
-		- data->player.plane.y * sin(PI / 36.);
-	data->player.plane.y = data->player.plane.y * cos(PI / 36.)
-		+ tmp * sin(PI / 36.);
+	data->player.plane.x = data->player.plane.x * cos(rs)
+		- data->player.plane.y * sin(rs);
+	data->player.plane.y = data->player.plane.y * cos(rs)
+		+ tmp * sin(rs);
 }
 
-void	ft_rotate2(t_data *data)
+void	ft_rotate2(t_data *data, double rs)
 {
 	double	tmp;
 
 	tmp = data->player.dir.x;
-	data->player.dir.x = data->player.dir.x * cos(-PI / 36.)
-		- data->player.dir.y * sin(-PI / 36.);
-	data->player.dir.y = data->player.dir.y * cos(-PI / 36.)
-		+ tmp * sin(-PI / 36.);
+	data->player.dir.x = data->player.dir.x * cos(-rs)
+		- data->player.dir.y * sin(-rs);
+	data->player.dir.y = data->player.dir.y * cos(-rs)
+		+ tmp * sin(-rs);
 	tmp = data->player.plane.x;
-	data->player.plane.x = data->player.plane.x * cos(-PI / 36.)
-		- data->player.plane.y * sin(-PI / 36.);
-	data->player.plane.y = data->player.plane.y * cos(-PI / 36.)
-		+ tmp * sin(-PI / 36.);
+	data->player.plane.x = data->player.plane.x * cos(-rs)
+		- data->player.plane.y * sin(-rs);
+	data->player.plane.y = data->player.plane.y * cos(-rs)
+		+ tmp * sin(-rs);
 }
 
 void	ft_move_player(void *param)
@@ -102,7 +102,7 @@ void	ft_move_player(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 		ft_move2(param, MLX_KEY_A);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		ft_rotate1(param);
+		ft_rotate1(param, PI / 36.);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		ft_rotate2(param);
+		ft_rotate2(param, PI / 36.);
 }

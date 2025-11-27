@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/26 23:40:46 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 13:50:01 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@
 #include  <limits.h>
 # include "MLX42.h"
 
+/* *** minimap *** */
+# define P_EYE 0xFFB4DCFF
+# define P_PODY 0xC8325AFF
+# define M_OUT 0x141419FF
+# define M_WALL 0x2D2D37FF
+# define M_FLOOR 0x649B64FF
+# define M_C_DOOR 0x3B1F0FFF
+# define M_O_DOOR 0x5A2F17FF
+
+/* *** animation *** */
+# define FRAMES_DIR "./bonus/frames"
+
+/* *** door *** */
+# define DOOR_TEX_PATH "./textures/door.png"
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -132,8 +146,8 @@ void	ft_draw(t_data *data, t_ray *ray, t_i_xy *xy);
 void	ft_mini_map(void *param);
 
 void	ft_move_player(void *param);
-void	ft_rotate1(t_data *data);
-void	ft_rotate2(t_data *data);
+void	ft_rotate1(t_data *data, double rs);
+void	ft_rotate2(t_data *data, double rs);
 
 void	ft_mouse_rotate(double xpos, double ypos, void *param);
 void	ft_mouse_mode(mouse_key_t button, action_t action, modifier_key_t mods,

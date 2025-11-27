@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:36:15 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/27 00:17:22 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 06:45:45 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	ft_load_frame(t_anime *anime, int id)
 {
 	char	path[256];
 
-	snprintf(path, 256, "./bonus/frames/frame%d.png", id + 1);
+	snprintf(path, 256, "%s/frame%d.png", FRAMES_DIR, id + 1);
 	anime->frames[id] = mlx_load_png(path);
 	if (!anime->frames[id])
 		return (1);

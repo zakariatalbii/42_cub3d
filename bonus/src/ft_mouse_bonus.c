@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/15 15:49:03 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 10:26:17 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_mouse_rotate(double xpos, double ypos, void *param)
 	(void)ypos;
 	data = (t_data *)param;
 	if (data->mouse && xpos < x)
-		ft_rotate1(param);
+		ft_rotate1(param, PI / 108.);
 	if (data->mouse && xpos > x)
-		ft_rotate2(param);
+		ft_rotate2(param, PI / 108.);
 	x = xpos;
 }
 

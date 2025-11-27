@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 09:40:14 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/26 23:30:34 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 06:34:55 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	ft_mini_player(t_data *data)
 		{
 			if (pow(c.y - c0.y + data->player.dir.y * r / 2, 2) + pow(c.x
 					- c0.x - data->player.dir.x * r / 2, 2) <= pow(r / 2, 2))
-				mlx_put_pixel(data->mm_img, c.x, c.y, 0xFFB4DCFF);
+				mlx_put_pixel(data->mm_img, c.x, c.y, P_EYE);
 			else
-				mlx_put_pixel(data->mm_img, c.x, c.y, 0xC8325AFF);
+				mlx_put_pixel(data->mm_img, c.x, c.y, P_PODY);
 			c.x++;
 		}
 		c.y++;
@@ -44,13 +44,13 @@ static void	ft_mini_player(t_data *data)
 static void	ft_draw_map(t_data *data, t_i_xy *map, t_i_xy *xy)
 {
 	if (data->map[map->y][map->x] == 'D')
-		mlx_put_pixel(data->mm_img, xy->x, xy->y, 0x880000FF);
+		mlx_put_pixel(data->mm_img, xy->x, xy->y, M_C_DOOR);
 	else if (data->map[map->y][map->x] == 'd')
-		mlx_put_pixel(data->mm_img, xy->x, xy->y, 0x440000FF);
+		mlx_put_pixel(data->mm_img, xy->x, xy->y, M_O_DOOR);
 	else if (data->map[map->y][map->x] == '1')
-		mlx_put_pixel(data->mm_img, xy->x, xy->y, 0x2D2D37FF);
+		mlx_put_pixel(data->mm_img, xy->x, xy->y, M_WALL);
 	else
-		mlx_put_pixel(data->mm_img, xy->x, xy->y, 0x649B64FF);
+		mlx_put_pixel(data->mm_img, xy->x, xy->y, M_FLOOR);
 }
 
 void	ft_mini_map(void *param)
@@ -72,7 +72,7 @@ void	ft_mini_map(void *param)
 				+ (data->player.pos.y - (int)data->mm_img->height / (2 * 32.));
 			if (map.x < 0 || map.y < 0 || map.x >= data->map_size.x
 				|| map.y >= data->map_size.y || data->map[map.y][map.x] == ' ')
-				mlx_put_pixel(data->mm_img, xy.x, xy.y, 0x141419FF);
+				mlx_put_pixel(data->mm_img, xy.x, xy.y, M_OUT);
 			else
 				ft_draw_map(data, &map, &xy);
 			xy.x++;
