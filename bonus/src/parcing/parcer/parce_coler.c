@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_coler_bonus.c                                :+:      :+:    :+:   */
+/*   parce_coler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:06:37 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:15:00 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 18:38:28 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "cub3D.h"
 
-int is_space(char c)
+int	is_space(char c)
 {
 	return (c == 32 || (c >= 9 && c <= 13));
 }
 
-static int put_rgb(int color, int cont, char c, t_config *data)
+static	int	put_rgb(int color, int cont, char c, t_config *data)
 {
 	if (color > 255)
 		return (1);
@@ -43,16 +43,16 @@ static int put_rgb(int color, int cont, char c, t_config *data)
 		else
 			return (1);
 	}
-	return(0);
+	return (0);
 }
 
-int append_color(char *value, char c, t_config *data)
+int	append_color(char *value, char c, t_config *data)
 {
-	int  i;
-	int  start;
-	int  cont;
-	int  color;
-	char *num;
+	int		i;
+	int		start;
+	int		cont;
+	int		color;
+	char	*num;
 
 	i = 0;
 	cont = 0;
@@ -75,9 +75,9 @@ int append_color(char *value, char c, t_config *data)
 	return (0);
 }
 
-int parce_color(char *start, char *value, t_config *data)
+int	parce_color(char *start, char *value, t_config *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!start || !value)
@@ -88,18 +88,19 @@ int parce_color(char *start, char *value, t_config *data)
 			return (1);
 		if ((value[i] == 44)
 			&& (!value[i + 1]))
-				return(1);
+			return (1);
 		i++;
 	}
 	return (append_color(value, start[0], data));
 }
-int assign_color(char *start,char *line, int i, t_config *data)
+
+int	assign_color(char *start, char *line, int i, t_config *data)
 {
-	char *value;
-	
+	char	*value;
+
 	if (!start)
 		return (1);
-	value = get_color(line , i);
+	value = get_color(line, i);
 	if (!value)
 		return (1);
 	if (parce_color(start, value, data))

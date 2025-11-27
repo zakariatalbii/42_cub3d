@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_p_bonus.c                                     :+:      :+:    :+:   */
+/*   main_p.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:22:08 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:14:45 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 19:54:55 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3D_bonus.h"
+#include "cub3D.h"
 
-int negative_map_position(t_config *data)
+int	negative_map_position(t_config *data)
 {
 	if (!data->tex.no || !data->tex.so || !data->tex.we
 		|| !data->tex.ea || data->floor.b < 0 || data->ceil.b < 0)
-		return(1);
+		return (1);
 	return (0);
 }
 
-char *get_start(char *line, int i)
+char	*get_start(char *line, int i)
 {
 	if (!ft_strncmp(&line[i], "NO ", 3))
-		return("NO ");
+		return ("NO ");
 	if (!ft_strncmp(&line[i], "SO ", 3))
 		return ("SO ");
 	if (!ft_strncmp(&line[i], "WE ", 3))
@@ -38,10 +38,10 @@ char *get_start(char *line, int i)
 		return (NULL);
 }
 
-char *get_color(char *line, int i)
+char	*get_color(char *line, int i)
 {
-	int begin;
-	int end;
+	int	begin;
+	int	end;
 
 	i += 2;
 	while (is_space(line[i]))
@@ -59,13 +59,11 @@ char *get_color(char *line, int i)
 	return (gc_strndup(line, begin, end));
 }
 
-
-
-static int  valid_file_name(char *path)
+static	int	valid_file_name(char *path)
 {
-	int len;
-	int fd;
-	
+	int	len;
+	int	fd;
+
 	fd = open(path, O_RDONLY);
 	if (-1 == fd)
 	{
@@ -81,17 +79,17 @@ static int  valid_file_name(char *path)
 	return (fd);
 }
 
-int main_parce(char **cub_file, t_config *data)
+int	main_parce(char **cub_file, t_config *data)
 {
-	int fd;
+	int	fd;
 
 	fd = valid_file_name(cub_file[1]);
 	if (fd > 0)
 	{
 		if (parce_line(cub_file, fd, data))
 		{
-		   close (fd);
-		   return (1);
+			close (fd);
+			return (1);
 		}
 		else
 		{
@@ -101,5 +99,5 @@ int main_parce(char **cub_file, t_config *data)
 	}
 	else
 		return (close(fd), 1);
-	return (close(fd),0);
+	return (close(fd), 0);
 }

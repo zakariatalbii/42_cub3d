@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gc_malloc_bonus.c                                  :+:      :+:    :+:   */
+/*   gc_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:33:25 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:14:06 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 18:06:17 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "cub3D.h"
 
 void	data_init(t_config *conf)
 {
@@ -19,18 +19,20 @@ void	data_init(t_config *conf)
 	conf->tex.so = NULL;
 	conf->tex.we = NULL;
 	conf->tex.ea = NULL;
-	conf->map = NULL;
 	conf->floor.r = -1;
 	conf->floor.g = -1;
 	conf->floor.b = -1;
 	conf->ceil.r = -1;
 	conf->ceil.g = -1;
 	conf->ceil.b = -1;
+	conf->map = NULL;
 }
 
-static t_gc	**get_gc_list(void)
+static	t_gc	**get_gc_list(void)
 {
-	static t_gc	*gc = NULL;
+	static t_gc	*gc;
+
+	gc = NULL;
 	return (&gc);
 }
 
@@ -51,7 +53,6 @@ void	*gc_malloc(size_t size)
 	}
 	node->ptr = ptr;
 	node->next = NULL;
-
 	gc_list = get_gc_list();
 	if (!*gc_list)
 		*gc_list = node;
@@ -63,15 +64,15 @@ void	*gc_malloc(size_t size)
 	return (ptr);
 }
 
-void free_ptr(void *ptr)
+void	free_ptr(void *ptr)
 {
-	t_gc **list;
-	t_gc *cur;
-	t_gc *prev;
+	t_gc	**list;
+	t_gc	*cur;
+	t_gc	*prev;
 
 	list = get_gc_list();
 	if (!list || !*list || !ptr)
-		return;
+		return ;
 	cur = *list;
 	prev = NULL;
 	while (cur)
@@ -84,7 +85,7 @@ void free_ptr(void *ptr)
 				*list = cur->next;
 			free(cur->ptr);
 			free(cur);
-			return;
+			return ;
 		}
 		prev = cur;
 		cur = cur->next;
@@ -93,10 +94,11 @@ void free_ptr(void *ptr)
 
 void	free_all(void)
 {
-	t_gc	**gc_list = get_gc_list();
+	t_gc	**gc_list;
 	t_gc	*tmp;
 	t_gc	*curr;
 
+	gc_list = get_gc_list();
 	curr = *gc_list;
 	while (curr)
 	{

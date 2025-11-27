@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_map_bonus.c                                  :+:      :+:    :+:   */
+/*   parce_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 08:19:57 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:15:04 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 18:47:45 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3D_bonus.h"
+#include "cub3D.h"
 
-int is_map(char *line)
+int	is_map(char *line)
 {
-    int i;
+	int	i;
 
 	i = 0;
-    while (is_space(line[i]))
-        i++;
-    if (line[i] == '\0')
-        return (0);
-    while (line[i])
-    {
-        if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S' 
-			&& line[i] != 'E' && line[i] != 'W' && !is_space(line[i]) && line[i] != 'D')
-            return (0);
-        i++;
-    }
-    return (1);
+	while (is_space(line[i]))
+		i++;
+	if (line[i] == '\0')
+		return (0);
+	while (line[i])
+	{
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'
+			&& line[i] != 'E' && line[i] != 'W' && !is_space(line[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int get_long(t_config *data)
+int	get_long(t_config *data)
 {
-	int len;
-	int max;
-	int i;
+	int	len;
+	int	max;
+	int	i;
 
 	i = 0;
 	max = 0;
@@ -49,11 +49,12 @@ int get_long(t_config *data)
 	data->x_cols = max;
 	return (max);
 }
-char **prepar_map(t_config *data)
+
+char	**prepar_map(t_config *data)
 {
-	int longer_len;
-	char **squar_map;
-	int i;
+	int		longer_len;
+	char	**squar_map;
+	int		i;
 
 	longer_len = get_long(data);
 	i = 0;
@@ -69,30 +70,29 @@ char **prepar_map(t_config *data)
 		if (!squar_map[i])
 			return (NULL);
 		memset(squar_map[i], ' ', longer_len);
-        memcpy(squar_map[i], data->map[i], ft_strlen(data->map[i]));
-        squar_map[i][longer_len] = '\0';
-        i++;
+		memcpy(squar_map[i], data->map[i], ft_strlen(data->map[i]));
+		squar_map[i][longer_len] = '\0';
+		i++;
 	}
 	squar_map[i] = NULL;
-	return(squar_map);
+	return (squar_map);
 }
 
-int parcing_dor(t_config *data, int y, int x)
+int	get_h(char**map)
 {
-	if (x == 0 || y == 0 || !data->map[y+1] || !data->map[y][x+1])
-    return 1;	
-	if (data->map[y][x - 1] == '1' && data->map[y][x + 1] == '1')
-		return (0);
-	if (data->map[y - 1][x] == '1' && data->map[y + 1][x] == '1')
-		return (0);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
 }
 
-int validation_char_map(t_config * data)
+int	validation_char_map(t_config *data)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	j = 0;
 	while (data->map[i])
@@ -100,13 +100,14 @@ int validation_char_map(t_config * data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (map_char(data->map[i][j], data, j, i))
-					return(1);
+			if (data->map[i][j] != '0' && data->map[i][j] != '1'
+				&& data->map[i][j] != ' ' && !is_player(data->map[i][j]))
+				return (1);
 			if (is_player(data->map[i][j]) && data->player_dir == '1')
 				data->player_dir = data->map[i][j];
-			else if(is_player(data->map[i][j]) && data->player_dir != '1')
-					return (1);
-			j++;	
+			else if (is_player(data->map[i][j]) && data->player_dir != '1')
+				return (1);
+			j++;
 		}
 		i++;
 	}
@@ -114,4 +115,3 @@ int validation_char_map(t_config * data)
 		return (1);
 	return (0);
 }
-

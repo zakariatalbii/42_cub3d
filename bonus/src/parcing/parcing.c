@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing_bonus.c                                    :+:      :+:    :+:   */
+/*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:17:51 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/24 00:06:25 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/27 19:54:53 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "cub3D.h"
 
 void	find_and_replace_player(char **map, t_config *data)
 {
-	int i = 0;
-	int j;
+	int	i;
+	int	j;
 
+	i = 0;
 	while (map[i])
 	{
 		j = 0;
@@ -34,28 +35,28 @@ void	find_and_replace_player(char **map, t_config *data)
 	}
 }
 
-t_config *parcing(int ac, char **av)
+t_config	*parcing(int ac, char **av)
 {
-    t_config *map_conf;
+	t_config	*map_conf;
 
-    map_conf = gc_malloc(sizeof(t_config));
-    if (!map_conf)
-        return (NULL);
-    data_init(map_conf);
-    if (ac == 2)
-    {
-        if (main_parce(av, map_conf))
-        {
-            free_all();
-            printf("error\n");
-			return (NULL);
-        }
-    }
-    else
-    {
-        free_all();
-        printf("error\n");
+	map_conf = gc_malloc(sizeof(t_config));
+	if (!map_conf)
 		return (NULL);
-    }
-    return (map_conf);
+	data_init(map_conf);
+	if (ac == 2)
+	{
+		if (main_parce(av, map_conf))
+		{
+			free_all();
+			printf("error\n");
+			return (NULL);
+		}
+	}
+	else
+	{
+		free_all();
+		printf("error\n");
+		return (NULL);
+	}
+	return (map_conf);
 }

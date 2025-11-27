@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory_util_bonus.c                                :+:      :+:    :+:   */
+/*   memory_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:22:47 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:14:50 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/06 16:30:49 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "cub3D.h"
 
 char	*gc_strndup(const char *line, int start, int end)
 {

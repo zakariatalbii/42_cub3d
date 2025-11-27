@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_utils_bonus.c                                :+:      :+:    :+:   */
+/*   parce_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:58:21 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 17:15:15 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/26 18:48:30 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "cub3D.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -51,7 +51,7 @@ int	ft_isdigit(int v)
 	return (0);
 }
 
-static int	check_sig(int sg)
+static int	check(int sg)
 {
 	if (sg > 0)
 		return (-1);
@@ -79,7 +79,7 @@ int	ft_atoi(const char *str)
 	{
 		if (res > ((unsigned long long)((9223372036854775807
 					- (*str - 48)) / 10)))
-			return (check_sig(seg));
+			return (check(seg));
 		res = (res * 10) + *str - 48;
 		str++;
 	}
