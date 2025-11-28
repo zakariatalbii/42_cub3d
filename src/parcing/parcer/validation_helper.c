@@ -6,17 +6,35 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 11:56:15 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/22 16:05:13 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:37:29 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void assing_position(int y, int x, t_config *data)
+int	return_cont(int cont)
+{
+	if (cont > 0)
+		return (cont);
+	return (-1);
+}
+
+int	is_texture_or_color(char *s)
+{
+	return (!ft_strncmp(s, "NO ", 3)
+		|| !ft_strncmp(s, "SO ", 3)
+		|| !ft_strncmp(s, "WE ", 3)
+		|| !ft_strncmp(s, "EA ", 3)
+		|| !ft_strncmp(s, "F ", 2)
+		|| !ft_strncmp(s, "C ", 2));
+}
+
+void	assing_position(int y, int x, t_config *data)
 {
 	data->player_x = x;
 	data->player_y = y;
 }
+
 int	fill_inside(char **map, t_point p, t_config *data)
 {
 	if (p.x < 0 || p.y < 0 || p.y >= data->y_rows || p.x >= data->x_cols)
@@ -39,15 +57,13 @@ int	fill_inside(char **map, t_point p, t_config *data)
 	return (0);
 }
 
-int check_inside(char **map, t_config *data)
+int	check_inside(char **map, t_config *data)
 {
-	t_point p;
-	int i;
-	int j;
+	t_point	p;
+	int		i;
+	int		j;
 
 	i = 0;
-	
-	
 	while (map[i])
 	{
 		j = 0;

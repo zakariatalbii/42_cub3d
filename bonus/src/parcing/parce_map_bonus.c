@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_map.c                                        :+:      :+:    :+:   */
+/*   parce_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 08:19:57 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/26 18:47:45 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:23:38 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 int	is_map(char *line)
 {
@@ -23,8 +23,10 @@ int	is_map(char *line)
 		return (0);
 	while (line[i])
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'E' && line[i] != 'W' && !is_space(line[i]))
+		if (line[i] != '0' && line[i] != '1'
+			&& line[i] != 'N' && line[i] != 'S'
+			&& line[i] != 'E' && line[i] != 'W'
+			&& !is_space(line[i]) && line[i] != 'D')
 			return (0);
 		i++;
 	}
@@ -78,14 +80,15 @@ char	**prepar_map(t_config *data)
 	return (squar_map);
 }
 
-int	get_h(char**map)
+int	parcing_dor(t_config *data, int y, int x)
 {
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
+	if (x == 0 || y == 0 || !data->map[y + 1] || !data->map[y][x + 1])
+		return (1);
+	if (data->map[y][x - 1] == '1' && data->map[y][x + 1] == '1')
+		return (0);
+	if (data->map[y - 1][x] == '1' && data->map[y + 1][x] == '1')
+		return (0);
+	return (1);
 }
 
 int	validation_char_map(t_config *data)
@@ -100,8 +103,7 @@ int	validation_char_map(t_config *data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (data->map[i][j] != '0' && data->map[i][j] != '1'
-				&& data->map[i][j] != ' ' && !is_player(data->map[i][j]))
+			if (map_char(data->map[i][j], data, j, i))
 				return (1);
 			if (is_player(data->map[i][j]) && data->player_dir == '1')
 				data->player_dir = data->map[i][j];

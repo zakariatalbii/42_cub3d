@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_p.c                                           :+:      :+:    :+:   */
+/*   main_p_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:22:08 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/27 19:54:55 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/27 11:18:38 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 int	negative_map_position(t_config *data)
 {
@@ -88,7 +88,7 @@ int	main_parce(char **cub_file, t_config *data)
 	{
 		if (parce_line(cub_file, fd, data))
 		{
-			close (fd);
+			close(fd);
 			return (1);
 		}
 		else

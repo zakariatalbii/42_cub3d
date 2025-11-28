@@ -6,7 +6,7 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:33:25 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/13 16:24:57 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/26 18:06:17 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void	data_init(t_config *conf)
 	conf->map = NULL;
 }
 
-static t_gc	**get_gc_list(void)
+static	t_gc	**get_gc_list(void)
 {
-	static t_gc	*gc = NULL;
+	static t_gc	*gc;
+
+	gc = NULL;
 	return (&gc);
 }
 
@@ -51,7 +53,6 @@ void	*gc_malloc(size_t size)
 	}
 	node->ptr = ptr;
 	node->next = NULL;
-
 	gc_list = get_gc_list();
 	if (!*gc_list)
 		*gc_list = node;
@@ -63,15 +64,15 @@ void	*gc_malloc(size_t size)
 	return (ptr);
 }
 
-void free_ptr(void *ptr)
+void	free_ptr(void *ptr)
 {
-	t_gc **list;
-	t_gc *cur;
-	t_gc *prev;
+	t_gc	**list;
+	t_gc	*cur;
+	t_gc	*prev;
 
 	list = get_gc_list();
 	if (!list || !*list || !ptr)
-		return;
+		return ;
 	cur = *list;
 	prev = NULL;
 	while (cur)
@@ -84,7 +85,7 @@ void free_ptr(void *ptr)
 				*list = cur->next;
 			free(cur->ptr);
 			free(cur);
-			return;
+			return ;
 		}
 		prev = cur;
 		cur = cur->next;
@@ -93,10 +94,11 @@ void free_ptr(void *ptr)
 
 void	free_all(void)
 {
-	t_gc	**gc_list = get_gc_list();
+	t_gc	**gc_list;
 	t_gc	*tmp;
 	t_gc	*curr;
 
+	gc_list = get_gc_list();
 	curr = *gc_list;
 	while (curr)
 	{

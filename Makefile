@@ -10,7 +10,7 @@ SRCS = src/cub3D.c src/ft_cub_init.c src/ft_cub_loop.c src/ft_cub.c src/ft_draw.
 			src/parcing/get_next_line/get_next_line.c src/parcing/memori_manage/gc_malloc.c src/parcing/memori_manage/memory_util.c \
 			src/parcing/parcer/main_p.c src/parcing/parcer/parce_1_.c src/parcing/parcer/parce_coler.c src/parcing/parcer/parce_map_utils.c \
 			src/parcing/parcer/parce_map.c src/parcing/parcer/parce_utils.c src/parcing/parcer/validation_helper.c \
-			src/parcing/parcer/validation_map.c src/parcing/parcing.c
+			src/parcing/parcer/validation_map.c src/parcing/parcing.c src/parcing/get_next_line/get_utils.c
 
 OBJS= $(SRCS:.c=.o)
 

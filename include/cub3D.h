@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/28 03:23:51 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/28 16:30:11 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,9 @@ int			only_spaces(char *s);
 int			get_cont_line(char *file);
 char		*get_start(char *line, int i);
 char		*get_color(char *line, int i);
+int			is_texture_or_color(char *s);
+int			return_cont(int cont);
+int			check_fd(int fd);
 
 //utils
 int			ft_isdigit(int v);

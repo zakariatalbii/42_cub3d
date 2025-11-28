@@ -1,16 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_helper.c                                :+:      :+:    :+:   */
+/*   validation_helper_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 11:56:15 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/26 18:49:51 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:33:21 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
+
+int	get_h(char**map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+int	map_char(char c, t_config *data, int x, int y)
+{
+	if (c == 'D')
+	{
+		if (parcing_dor(data, y, x))
+			return (1);
+		else
+			return (0);
+	}
+	else if (c == '0' || c == '1' || c == ' ' || is_player(c))
+		return (0);
+	else
+		return (1);
+}
 
 void	assing_position(int y, int x, t_config *data)
 {
@@ -52,7 +77,7 @@ int	check_inside(char **map, t_config *data)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' || is_player(map[i][j]))
+			if (map[i][j] == '0' || is_player(map[i][j]) || map[i][j] == 'D')
 			{
 				p.x = j;
 				p.y = i;

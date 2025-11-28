@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce_1_.c                                         :+:      :+:    :+:   */
+/*   parce_1_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:51:56 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/27 19:54:57 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:53:22 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static	int	is_double(char *start, t_config *data)
 {
@@ -90,14 +90,13 @@ int	parce_line(char **file, int fd, t_config *data)
 	int		i;
 	char	*line;
 
-	while ((line = get_next_line(fd)) && line != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		i = 0;
 		while (is_space(line[i]) && !is_map(line))
 			i++;
-		if (!ft_strncmp(&line[i], "NO ", 3) || !ft_strncmp(&line[i], "SO ", 3)
-			|| !ft_strncmp(&line[i], "WE ", 3) || !ft_strncmp(&line[i], "EA ", 3)
-			|| !ft_strncmp(&line[i], "F ", 2) || !ft_strncmp(&line[i], "C ", 2))
+		if (is_texture_or_color(&line[i]))
 		{
 			if (append_config(line, i, data))
 				return (free_ptr(line), 1);
@@ -107,9 +106,10 @@ int	parce_line(char **file, int fd, t_config *data)
 			if (negative_map_position(data) || append_map(file, line, data))
 				return (free_ptr(line), 1);
 		}
-		else if ((line[i] != '\0'))
-			return (1);
+		else if (line[i] != '\0')
+			return (free_ptr(line), 1);
+		free_ptr(line);
+		line = get_next_line(fd);
 	}
-	free_ptr(line);
 	return (0);
 }

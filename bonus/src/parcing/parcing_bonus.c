@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing.c                                          :+:      :+:    :+:   */
+/*   parcing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:17:51 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/27 19:54:53 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:13:18 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
+
+int	return_cont(int cont)
+{
+	if (cont > 0)
+		return (cont);
+	return (-1);
+}
 
 void	find_and_replace_player(char **map, t_config *data)
 {
@@ -27,7 +34,7 @@ void	find_and_replace_player(char **map, t_config *data)
 			{
 				data->player_dir = map[i][j];
 				map[i][j] = '0';
-				return;
+				return ;
 			}
 			j++;
 		}
@@ -48,7 +55,7 @@ t_config	*parcing(int ac, char **av)
 		if (main_parce(av, map_conf))
 		{
 			free_all();
-			printf("error\n");
+			printf("errror\n");
 			return (NULL);
 		}
 	}

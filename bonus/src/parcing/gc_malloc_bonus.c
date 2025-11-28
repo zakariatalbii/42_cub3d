@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gc_malloc.c                                        :+:      :+:    :+:   */
+/*   gc_malloc_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:33:25 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/26 18:06:17 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/26 18:58:58 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	data_init(t_config *conf)
 {
@@ -19,13 +19,13 @@ void	data_init(t_config *conf)
 	conf->tex.so = NULL;
 	conf->tex.we = NULL;
 	conf->tex.ea = NULL;
+	conf->map = NULL;
 	conf->floor.r = -1;
 	conf->floor.g = -1;
 	conf->floor.b = -1;
 	conf->ceil.r = -1;
 	conf->ceil.g = -1;
 	conf->ceil.b = -1;
-	conf->map = NULL;
 }
 
 static	t_gc	**get_gc_list(void)

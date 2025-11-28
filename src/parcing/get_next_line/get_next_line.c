@@ -1,61 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/28 16:28:15 by aaboudra          #+#    #+#             */
+/*   Updated: 2025/11/28 16:35:36 by aaboudra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3D.h"
 
-size_t	ft_strlen(char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char) c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	return (0);
-}
-
-char	*ft_strjoin(char *left_str, char *buff)
+char	*ft_strjoin(char *l_f, char *buff)
 {
 	size_t	i;
 	size_t	j;
 	char	*str;
 
-	if (!left_str)
+	if (!l_f)
 	{
-		left_str = (char *)gc_malloc(1 * sizeof(char));
-		left_str[0] = '\0';
+		l_f = (char *)gc_malloc(1 * sizeof(char));
+		l_f[0] = '\0';
 	}
-	if (!left_str || !buff)
+	if (!l_f || !buff)
 		return (NULL);
-	str = gc_malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	str = gc_malloc(sizeof(char) * ((ft_strlen(l_f) + ft_strlen(buff)) + 1));
 	if (str == NULL)
 		return (NULL);
 	i = -1;
 	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
+	if (l_f)
+		while (l_f[++i] != '\0')
+			str[i] = l_f[i];
 	while (buff[j] != '\0')
 		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
-	free_ptr(left_str);
+	str[ft_strlen(l_f) + ft_strlen(buff)] = '\0';
+	free_ptr(l_f);
 	return (str);
 }
 

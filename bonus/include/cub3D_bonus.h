@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/28 03:01:50 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/28 16:13:50 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,6 +279,8 @@ int			main_parce(char **cub_file, t_config *data);
 void		data_init(t_config *conf);
 int			parce_line(char **file, int fd, t_config *data);
 int			assign_color(char *start, char *line, int i, t_config *data);
+int			is_texture_or_color(char *s);
+int			return_cont(int cont);
 // int assign_map(char *line, t_config *data);
 int			is_map(char *line);
 int			negative_map_position(t_config *data);

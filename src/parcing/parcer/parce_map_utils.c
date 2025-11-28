@@ -6,16 +6,19 @@
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:45:31 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/15 13:38:54 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:30:48 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int only_spaces(char *s)
+int	only_spaces(char *s)
 {
-	int i = 0;
-	int space = 0;
+	int	i;
+	int	space;
+
+	i = 0;
+	space = 0;
 	while (s[i])
 	{
 		if (s[i] == ' ')
@@ -27,40 +30,33 @@ int only_spaces(char *s)
 	return (1);
 }
 
-int check(int fd)
+int	handle_end_map(int fd, char *line, int cont)
 {
-    char *line;
-    int result;
-
-	result = 0;
-    while ((line = get_next_line(fd)))
-    {
-        int i = 0;
-        while (line[i])
-        {
-            if (line[i] != ' ' && line[i] != '\n')
-            {
-                result = 1;
-                free_ptr(line);
-                return result;
-            }
-            i++;
-        }
-        free_ptr(line);
-    }
-    return (result);
+	if (check_fd(fd))
+	{
+		free_ptr(line);
+		close(fd);
+		return (-1);
+	}
+	free_ptr(line);
+	close(fd);
+	return (return_cont(cont));
 }
-int get_cont_line(char *file)
-{
-	int  fd;
-	int  cont = 0;
-	char *line;
-	int  in_map = 0;
 
+int	get_cont_line(char *file)
+{
+	int		fd;
+	int		cont;
+	int		in_map;
+	char	*line;
+
+	cont = 0;
+	in_map = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		if (is_map(line) || (in_map && only_spaces(line)))
 		{
@@ -68,15 +64,12 @@ int get_cont_line(char *file)
 			cont++;
 		}
 		else if (in_map && !only_spaces(line))
-		{
-			if (check(fd))
-				return (close(fd), free_ptr(line), -1);
-			return (cont > 0 ? cont : -1);
-		}
+			return (handle_end_map(fd, line, cont));
 		free_ptr(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
-	return (cont > 0 ? cont : -1);
+	return (return_cont(cont));
 }
 
 int	fill(char **map, t_point p, int height, int width)

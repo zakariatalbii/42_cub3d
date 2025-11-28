@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation_map.c                                   :+:      :+:    :+:   */
+/*   validation_map_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:34:46 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/26 18:51:25 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/28 16:17:10 by aaboudra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 char	*get_value(char *line, int i)
 {
@@ -29,7 +29,7 @@ char	*get_value(char *line, int i)
 	return (gc_strndup(line, begin, end));
 }
 
-int	check_tex(t_config *data)
+static	int	check_tex(t_config *data)
 {
 	int	fd;
 
@@ -72,9 +72,31 @@ int	assign_tex(char *start, char *line, int i, t_config *data)
 	return (0);
 }
 
-int	is_player(char c)
+int	check(int fd)
 {
-	return (c == 'W' || c == 'E' || c == 'S' || c == 'N');
+	char	*line;
+	int		result;
+	int		i;
+
+	result = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		i = 0;
+		while (line[i])
+		{
+			if (line[i] != ' ' && line[i] != '\n')
+			{
+				result = 1;
+				free_ptr(line);
+				return (result);
+			}
+			i++;
+		}
+		free_ptr(line);
+		line = get_next_line(fd);
+	}
+	return (result);
 }
 
 int	validation(t_config *data)
