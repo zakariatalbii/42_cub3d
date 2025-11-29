@@ -6,7 +6,7 @@ WE ./textures/wall3.png
 
 EA ./textures/wall4.png
 
-F 70,50,40
+F 18446744073709551618,50,40
 
 C 80,0,15
 

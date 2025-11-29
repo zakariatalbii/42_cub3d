@@ -42,6 +42,7 @@ char	*get_color(char *line, int i)
 {
 	int	begin;
 	int	end;
+	char *value;
 
 	i += 2;
 	while (is_space(line[i]))
@@ -56,7 +57,14 @@ char	*get_color(char *line, int i)
 			return (NULL);
 		i++;
 	}
-	return (gc_strndup(line, begin, end));
+	value = gc_strndup(line, begin, end);
+	i = 0;
+	while(value[i])
+		i++;
+	if (i <= 12)
+		return (value);
+	else
+		return (NULL);
 }
 
 static	int	valid_file_name(char *path)
