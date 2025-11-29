@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/26 23:26:30 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/29 18:07:56 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	ft_mouse_hook(t_data *data)
 {
-	data->mouse = 1;
-	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_DISABLED);
+	data->mouse = 0;
+	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
 	mlx_cursor_hook(data->mlx, ft_mouse_rotate, data);
 	mlx_mouse_hook(data->mlx, ft_mouse_mode, data);
 }

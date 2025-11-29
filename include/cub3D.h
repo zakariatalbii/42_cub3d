@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/28 16:30:11 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/29 17:53:47 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ int			check_inside(char **map, t_config *data);
 void		assing_position(int y, int x, t_config *data);
 void		find_and_replace_player(char **map, t_config *data);
 
-//grtnext_line
+//getnext_line
 char		*get_next_line(int fd);
 char		*ft_read_to_left_str(int fd, char *left_str);
 char		*ft_strchr(char *s, int c);

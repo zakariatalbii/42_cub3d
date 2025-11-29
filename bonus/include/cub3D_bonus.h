@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:33:02 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/28 16:13:50 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/29 19:22:16 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 #  define P_EYE 0xFFB4DCFF
 # endif
 
-# ifndef P_PODY
-#  define P_PODY 0xC8325AFF
+# ifndef P_BODY
+#  define P_BODY 0xC8325AFF
 # endif
 
 # ifndef M_OUT
@@ -42,7 +42,7 @@
 # endif
 
 # ifndef M_FLOOR
-#  define M_FLOOR 0x649B64FF
+#  define M_FLOOR 0x28140FFF
 # endif
 
 # ifndef M_C_DOOR
@@ -214,6 +214,7 @@ void		ft_door(t_data *data);
 void		ft_door_hook(void *param);
 
 /* *** animation *** */
+int			ft_load_frames(t_anime *anime);
 int			ft_anime_init(t_data *data, t_anime *anime);
 void		ft_animation(void *param);
 
@@ -281,7 +282,6 @@ int			parce_line(char **file, int fd, t_config *data);
 int			assign_color(char *start, char *line, int i, t_config *data);
 int			is_texture_or_color(char *s);
 int			return_cont(int cont);
-// int assign_map(char *line, t_config *data);
 int			is_map(char *line);
 int			negative_map_position(t_config *data);
 int			only_spaces(char *s);
@@ -313,7 +313,7 @@ int			check(int fd);
 int			parcing_dor(t_config *data, int y, int x);
 void		find_and_replace_player(char **map, t_config *data);
 
-//grtnext_line
+//getnext_line
 char		*get_next_line(int fd);
 char		*ft_read_to_left_str(int fd, char *left_str);
 char		*ft_strchr(char *s, int c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:17:51 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/28 16:33:00 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/29 17:57:37 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ t_config	*parcing(int ac, char **av)
 		if (main_parce(av, map_conf))
 		{
 			free_all();
-			printf("error\n");
+			write(2, "error\n", 6);
 			return (NULL);
 		}
 	}
 	else
 	{
 		free_all();
-		printf("error\n");
+		write(2, "error\n", 6);
 		return (NULL);
 	}
 	return (map_conf);

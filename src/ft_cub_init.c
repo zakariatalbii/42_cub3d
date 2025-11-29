@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/22 16:37:37 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/29 16:27:13 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	ft_cub_init(t_data *data, int argc, char **argv)
 {
 	if (ft_game_init(data, argc, argv))
 		return (1);
+	if (ft_tex_init(data))
+		return (1);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
 	if (!data->mlx)
 		return (1);
@@ -68,8 +70,6 @@ int	ft_cub_init(t_data *data, int argc, char **argv)
 	if (!data->cub_img)
 		return (1);
 	if (mlx_image_to_window(data->mlx, data->cub_img, 0, 0) < 0)
-		return (1);
-	if (ft_tex_init(data))
 		return (1);
 	return (0);
 }

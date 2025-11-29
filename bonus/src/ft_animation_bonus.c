@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 17:36:15 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/27 06:45:45 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/29 16:33:48 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	ft_load_frame(t_anime *anime, int id)
 	return (0);
 }
 
-static int	ft_load_frames(t_anime *anime)
+int	ft_load_frames(t_anime *anime)
 {
 	int	i;
 
@@ -73,8 +73,6 @@ int	ft_anime_init(t_data *data, t_anime *anime)
 	if (!anime->img)
 		return (1);
 	if (mlx_image_to_window(data->mlx, anime->img, 0, 0) < 0)
-		return (1);
-	if (ft_load_frames(anime))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 09:40:14 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/27 06:34:55 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/29 16:23:51 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_mini_player(t_data *data)
 					- c0.x - data->player.dir.x * r / 2, 2) <= pow(r / 2, 2))
 				mlx_put_pixel(data->mm_img, c.x, c.y, P_EYE);
 			else
-				mlx_put_pixel(data->mm_img, c.x, c.y, P_PODY);
+				mlx_put_pixel(data->mm_img, c.x, c.y, P_BODY);
 			c.x++;
 		}
 		c.y++;

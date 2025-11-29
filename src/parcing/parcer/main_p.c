@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_p.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:22:08 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/27 19:54:55 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/11/29 17:49:08 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ char	*get_start(char *line, int i)
 
 char	*get_color(char *line, int i)
 {
-	int	begin;
-	int	end;
-	char *value;
+	int		begin;
+	int		end;
+	char	*value;
 
 	i += 2;
 	while (is_space(line[i]))
@@ -59,7 +59,7 @@ char	*get_color(char *line, int i)
 	}
 	value = gc_strndup(line, begin, end);
 	i = 0;
-	while(value[i])
+	while (value[i])
 		i++;
 	if (i <= 12)
 		return (value);

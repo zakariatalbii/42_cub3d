@@ -6,7 +6,7 @@
 /*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:32:58 by zatalbi           #+#    #+#             */
-/*   Updated: 2025/11/27 06:48:50 by zatalbi          ###   ########.fr       */
+/*   Updated: 2025/11/29 16:33:27 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ static int	ft_tex_init(t_data *data)
 	if (!data->tex[EA])
 		return (1);
 	data->tex[DR] = mlx_load_png(DOOR_TEX_PATH);
-	if (!data->tex[EA])
+	if (!data->tex[DR])
+		return (1);
+	if (ft_load_frames(&data->anime))
 		return (1);
 	return (0);
 }
@@ -62,6 +64,8 @@ static int	ft_tex_init(t_data *data)
 int	ft_cub_init(t_data *data, int argc, char **argv)
 {
 	if (ft_game_init(data, argc, argv))
+		return (1);
+	if (ft_tex_init(data))
 		return (1);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
 	if (!data->mlx)
@@ -81,8 +85,6 @@ int	ft_cub_init(t_data *data, int argc, char **argv)
 	if (mlx_image_to_window(data->mlx, data->mm_img,
 			data->mlx->width - data->mlx->width / 4,
 			data->mlx->height - data->mlx->height / 4) < 0)
-		return (1);
-	if (ft_tex_init(data))
 		return (1);
 	return (0);
 }
