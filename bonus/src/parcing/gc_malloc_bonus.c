@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc_malloc_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaboudra <aaboudra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zatalbi <zatalbi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 17:33:25 by aaboudra          #+#    #+#             */
-/*   Updated: 2025/11/26 18:58:58 by aaboudra         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:21:08 by zatalbi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ void	data_init(t_config *conf)
 
 static	t_gc	**get_gc_list(void)
 {
-	static t_gc	*gc;
+	static t_gc	*gc = NULL;
 
-	gc = NULL;
 	return (&gc);
 }
 
