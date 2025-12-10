@@ -1,12 +1,12 @@
-MLX_LIB = ./MLX42/lib/libmlx42.a
-
-MLX_H_DIR = ./MLX42/include
-
 ifeq ($(shell uname -s), Linux)
+MLX_LIB = ./MLX42/lib/linux/libmlx42.a
 MLX_FLAGS = -ldl -lglfw -pthread -lm
 else
+MLX_LIB = ./MLX42/lib/macOS/libmlx42.a
 MLX_FLAGS = -lglfw -L./MLX42/glfw/lib -lm
 endif
+
+MLX_H_DIR = ./MLX42/include
 
 SRCS = src/cub3D.c src/ft_cub_init.c src/ft_cub_loop.c src/ft_cub.c src/ft_draw.c src/ft_move_player.c src/utils.c \
 			src/parcing/get_next_line/get_next_line.c src/parcing/memori_manage/gc_malloc.c src/parcing/memori_manage/memory_util.c \
@@ -42,12 +42,12 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(MLX_LIB) $(OBJS)
+$(NAME): $(OBJS)
 	$(CC) $(OBJS) -Iinclude $(MLX_LIB) -I$(MLX_H_DIR) $(MLX_FLAGS) -o $(NAME)
 
 bonus: $(NAME_B)
 
-$(NAME_B): $(MLX_LIB) $(OBJS_B)
+$(NAME_B): $(OBJS_B)
 	$(CC) $(OBJS_B) -Ibonus/include $(MLX_LIB) -I$(MLX_H_DIR) $(MLX_FLAGS) -o $(NAME_B)
 
 clean:
