@@ -1,10 +1,12 @@
-MLX_REPO = https://github.com/codam-coding-college/MLX42.gitz
+MLX_LIB = ./MLX42/lib/libmlx42.a
 
-MLX = $(HOME)/MLX42
+MLX_H_DIR = ./MLX42/include
 
-MLX_LIB = $(MLX)/lib/libmlx42.a
-
-MLX_H_DIR = $(MLX)/include/MLX42
+ifeq ($(shell uname -s), Linux)
+MLX_FLAGS = -ldl -lglfw -pthread -lm
+else
+MLX_FLAGS = -lglfw -L./MLX42/glfw/lib -lm
+endif
 
 SRCS = src/cub3D.c src/ft_cub_init.c src/ft_cub_loop.c src/ft_cub.c src/ft_draw.c src/ft_move_player.c src/utils.c \
 			src/parcing/get_next_line/get_next_line.c src/parcing/memori_manage/gc_malloc.c src/parcing/memori_manage/memory_util.c \
@@ -32,27 +34,21 @@ CC = cc -Wall -Wextra -Werror
 
 RM = rm -f
 
-%.o: %.c include/cub3D.h
-	$(CC) -c $< -Iinclude -I$(MLX_H_DIR) -o $@
-
 %_bonus.o: %_bonus.c bonus/include/cub3D_bonus.h
 	$(CC) -c $< -Ibonus/include -I$(MLX_H_DIR) -o $@
+
+%.o: %.c include/cub3D.h
+	$(CC) -c $< -Iinclude -I$(MLX_H_DIR) -o $@
 
 all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(OBJS)
-	$(CC) $(OBJS) -Iinclude $(MLX_LIB) -I$(MLX_H_DIR) -ldl -lglfw -pthread -lm -o $(NAME)
+	$(CC) $(OBJS) -Iinclude $(MLX_LIB) -I$(MLX_H_DIR) $(MLX_FLAGS) -o $(NAME)
 
 bonus: $(NAME_B)
 
 $(NAME_B): $(MLX_LIB) $(OBJS_B)
-	$(CC) $(OBJS_B) -Ibonus/include $(MLX_LIB) -I$(MLX_H_DIR) -ldl -lglfw -pthread -lm -o $(NAME_B)
-
-$(MLX_LIB): $(MLX)
-	cmake $(MLX) -B $(MLX)/lib && make -C $(MLX)/lib -j4
-
-$(MLX):
-	git clone $(MLX_REPO) $(MLX)
+	$(CC) $(OBJS_B) -Ibonus/include $(MLX_LIB) -I$(MLX_H_DIR) $(MLX_FLAGS) -o $(NAME_B)
 
 clean:
 	$(RM) $(OBJS)
@@ -63,8 +59,3 @@ fclean: clean
 	$(RM) $(NAME_B)
 
 re: fclean all
-
-rebonus: fclean bonus
-
-cleanall: fclean
-	$(RM) -r $(MLX)
